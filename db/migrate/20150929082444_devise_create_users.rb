@@ -8,8 +8,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.text :about 
       t.text :address
       t.integer :phone 
-      t.integer :minutes 
-      t.integer :rating 
+      t.integer :minutes, default: 60
+      t.integer :rating,  default: 0 
 
       ## Recoverable
       t.string   :reset_password_token
