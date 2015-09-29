@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#profile'
   root to: 'users#profile'
   resources :users, only: [:index, :show, :edit, :update, :destroy] 
+  resources :users do 
+  	resources :skills#, only: [:index, :new,:edit, :create, :show, :update]
+  end
 end

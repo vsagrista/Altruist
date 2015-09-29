@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
 	def index
 		@users = User.all.order("rating DESC")
-		#@sorted_bids = @product.bids.order("amount DESC")
 	end
 
     def show

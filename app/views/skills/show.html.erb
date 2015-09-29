@@ -1,0 +1,11 @@
+<h1>Skill for <%= @user.name %> </h1>
+<% if @skill.blank? %>
+  <%= "You haven't added any skill yet" %>
+<% else %>
+	
+	<p>Name: <%= @skill.name %></p>
+	<p>Description <%= @skill.description %></p>
+	
+	
+<% end %>
+
