@@ -1,5 +1,24 @@
-<h2><%= current_user.name %>!</h2>
+<h2>Welcome <%= @user.name %></h2>
 <p>
-<strong>Email:</strong> <%= current_user.email %>
-<strong>Minutes:</strong> <%= current_user.minutes %>
+<h1>My account</h1>
+<p>You have <strong> <%= @user.minutes %> minutes</strong>
 </p>
+<ul>
+	<% if @user.address.blank? %>
+		<li>Address: <%= "Hey #{@user.name}, this fiels looks empty, click on edit and fill it up!" %></li>
+	<% else %>
+	    <li>Address: <%= @user.address %></li> 
+	<% end  %>
+	<% if @user.phone.blank? %>
+		<li>Phone: <%=  "Hey #{@user.name}, this fiels looks empty, click on edit and fill it up!" %></li>
+	<% else %>
+	    <li>Phone: <%= @user.phone %></li> 
+	<% end  %>
+	<li><%= link_to "Edit my personal information", edit_user_path(@user) %></li>
+</ul>
+
+<%= link_to "Altruist Stats", users_path %>
+<%= link_to "Change Password", edit_user_registration_path %>
+<p> link to MY STATS</p>
+<p> link to MAKE A NEW SEARCH </P>
+

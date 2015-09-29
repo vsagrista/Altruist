@@ -1,0 +1,13 @@
+<h1>Edit my personal details</h1>
+<%= form_for @user do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<%= f.label :about %>
+	<%= f.text_field :about %>
+	<%= f.label :phone %>
+	<%= f.number_field :phone %>
+	<%= f.label :address %>
+	<%= f.text_field :address %>
+	<%= f.submit "Save changes" %>
+<% end %>
+<%= link_to "Back", :back %>
