@@ -1,7 +1,8 @@
 <h1>Hello, <%= current_user.name %>
 <%= form_tag users_path, :method => 'get' do %>
   <p>What skill are you searching for?
-   <%= text_field_tag :search_text, params[:search_text] %>
+   <%= text_field_tag :name, params[:name] %>
+   <%= text_field_tag :address, params[:address] %>
    <%= submit_tag 'Search' %>
   </p>
 <% end %>

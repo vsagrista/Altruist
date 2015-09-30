@@ -7,32 +7,31 @@ class UsersController < ApplicationController
     end
 
 	def index
-    #@skills = Skill.all.order("rating DESC")
-    @skills = Skill.where(name: params[:search_text])
+    #binding.pry
+    @skills = Skill.where(name: params[:name])
     render :index
-    
 	end
 
-    def show
-      if User.find(params[:id]) == current_user 
-        @user = current_user
-      else 
-      	render :error 
-      end
+  def show
+    if User.find(params[:id]) == current_user 
+      @user = current_user
+    else 
+    	render :error 
     end
+  end
 
-    def edit 
-    	@user = User.find(params[:id])
-    end
+  def edit 
+  	@user = User.find(params[:id])
+  end
 
-    def update 
-    	User.find(params[:id]).update(user_params)
-    	redirect_to user_path(params[:id])
-    end
+  def update 
+  	User.find(params[:id]).update(user_params)
+  	redirect_to user_path(params[:id])
+  end
 
-    private
-    def user_params
-      params.require(:user).permit(:name,:about,:phone,:address)
+  private
+  def user_params
+    params.require(:user).permit(:name,:about,:phone,:address)
  	end
 
 end
