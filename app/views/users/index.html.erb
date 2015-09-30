@@ -15,7 +15,8 @@
   	    Altruist: <%= User.find(skill.user_id).name %>, 
   	    <%= link_to "Contact this altruist", user_skill_path(skill.user_id,skill.id)%>
   	  </li>
-
 	</ul>
 	<% end %>
 <% end %>
+
+<%= link_to "My skills", user_skills_path(current_user) %>
