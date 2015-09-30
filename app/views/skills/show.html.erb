@@ -12,8 +12,31 @@
 <% end %>
 
 <h2>We already talked? </h2>
-<p><a href="#">Buy time<a/> (make sure you have discussed place and time by phone or email)</p>
+
+<p><%= link_to "Buy time", new_user_skill_transaction_path(@user,@skill.id) %> (make sure you have discussed place and time by phone or email)</p>
 <br>
+<h1>Your transactions with <%= @user.name %> </h1>
+<% if @user.transactions.present? %>
+   
+   <h1>Done deals!</h1>
+   <% @user.transactions.each do |transaction| %>
+     <% if transaction.completed %>
+	   <p> Transaction: <%= transaction.id %> </p>
+	   <p> Accepted: <%= transaction.completed %> </p>
+     <% end %>
+   <% end %>
+   <h1>Not done yet</h1>
+   <% @user.transactions.each do |transaction| %>
+  	    <% if transaction.completed == false %>
+		    <p> Transaction: <%= transaction.id %> </p>
+		    <p> Accepted: <%= transaction.completed %> </p>
+        <% end %>
+   <% end %>
+<% else %> 
+    <p><%= "You haven't messaged any altruist yet!" %></p>
+
+<% end %>
+
 
 
 <%= link_to "Back", :back %>
