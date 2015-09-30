@@ -17,8 +17,8 @@
 	<li><%= link_to "Edit my personal information", edit_user_path(@user) %></li>
 </ul>
 
-<%= link_to "Altruist Stats", users_path %>
+<%= link_to "Find an altruits", users_path %>
 <%= link_to "Change Password", edit_user_registration_path %>
-<p> link to MY STATS</p>
-<p> link to MAKE A NEW SEARCH </P>
+<%= link_to "My Skills", user_skills_path(@user) %>
+
 
