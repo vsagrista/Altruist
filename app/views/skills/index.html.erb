@@ -3,4 +3,12 @@
 <% @skills.each do |skill| %>
 <p>Skill: <%= skill.name %></p>
 <p>Description: <%= skill.description %></p>
+	<% if skill.rating == 0 %>
+		<p>Rating: <%= "No ratings yet" %></p>
+	<% else %>
+		<p>Rating: <%= skill.rating %>
+	<% end %>
+	<p><%= link_to "Edit Skill", edit_user_skill_path(skill.user_id, skill.id) %></p>
+	<p><%= link_to 'Delete', user_skill_path(skill.user_id, skill.id), :method => :delete, data: {confirm: "Are you sure?"} %></p>
+	<br>
 <% end %>

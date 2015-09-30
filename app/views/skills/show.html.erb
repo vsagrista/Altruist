@@ -4,5 +4,13 @@
 <% else %>
 	<p>Name: <%= @skill.name %></p>
 	<p>Description <%= @skill.description %></p>
+	<p>User Rating on this Skill: <%= @skill.rating %></p>
 <% end %>
+<h2>Can my skill help you?</h2>
+<%= mail_to @user.email do %>
+  <p><strong>Email me:</strong> <span><%= @user.email %></span></p>
+<% end %>
+<br>
+
+<%= link_to "Back", :back %>
 

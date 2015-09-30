@@ -7,7 +7,10 @@ class UsersController < ApplicationController
     end
 
 	def index
-		@users = User.all.order("rating DESC")
+    #@skills = Skill.all.order("rating DESC")
+    @skills = Skill.where(name: params[:search_text])
+    render :index
+    
 	end
 
     def show

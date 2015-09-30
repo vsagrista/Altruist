@@ -1,8 +1,21 @@
 <h1>Hello, <%= current_user.name %>
-<p> This is the list of current Altruists </p>
+<%= form_tag users_path, :method => 'get' do %>
+  <p>What skill are you searching for?
+   <%= text_field_tag :search_text, params[:search_text] %>
+   <%= submit_tag 'Search' %>
+  </p>
+<% end %>
+<% if @skills.blank? %>
+  <p> Nothing found yet </p>
+<% else %>
+	<% @skills.all.order("rating DESC").each do |skill| %>
+	<ul>
+  	  <li>
+  	    Name: <%= skill.name %>, rating: <%= skill.rating %>,
+  	    Altruist: <%= User.find(skill.user_id).name %>, 
+  	    <%= link_to "Contact this altruist", user_skill_path(skill.user_id,skill.id)%>
+  	  </li>
 
-<% @users.each do |user| %>
-<ul>
-  <li>Name: <%= user.name %>, rating: <%= user.rating %> </li>
-</ul>
+	</ul>
+	<% end %>
 <% end %>
