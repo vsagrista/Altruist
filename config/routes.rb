@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root to: 'users#profile'
   resources :users, only: [:index, :show, :edit, :update, :destroy] 
   resources :users do 
-  	resources :skills#, only: [:index, :new,:edit, :create, :show, :update]
+  	resources :skills
   end
 end
