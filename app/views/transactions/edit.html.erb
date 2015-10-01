@@ -1,6 +1,11 @@
-<% unless @transaction.completed %>
+<% if @transaction.completed == false %>
 	<h1> You are about to validate some minutes, the altruist <%= User.find(@transaction.creator_id).name %> 
 	<br> is sending you <%= @transaction.minutes %> minutes. 
+		<%= form_for [@user,@skill,@transaction] do |f| %>
+			<%= f.submit "Accept" %>
+		<% end %>
+<% elsif @transaction.rated == false %>
+	<h1> You are about to rate <%= User.find(@transaction.creator_id).name %>
 	<br> Remember to give a rating from 0 to 10 depending on how happy you are! 
 	</h1>
 		<%= form_for [@user,@skill,@transaction] do |f| %>

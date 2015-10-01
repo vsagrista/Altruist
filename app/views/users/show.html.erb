@@ -6,14 +6,14 @@
 
 <h1>My Inbox</h1>
 <% if @transaction %>
-<h2> Completed Transactions </h2>
+<h2> Completed Transactions with other Altruists </h2>
 <% @transaction.each do |transaction|%>
 	  <% if transaction.completed  %>
 	      <p>Transaction with <%= User.find(transaction.creator_id).name %> completed! </p> 
 	  <% end %>
 <% end %>
 
-<h2> Transactions to accept </h2>
+<h2> Minutes I have to validate </h2>
 <% @transaction.each do |transaction|%>
 	  <% if transaction.completed == false %>
 		  <%= User.find(transaction.creator_id).name %>
@@ -21,9 +21,9 @@
 	  <% end %>
   <% end %>
 
-<h2> Waiting for your rating </h2>
+<h2> Altruism waiting for my opinion </h2>
 <% @transaction.each do |transaction|%>
-	  <% if Skill.find(transaction.skill_id).rated == false %>
+	  <% if transaction.rated == false %>
 		  <%= User.find(transaction.creator_id).name %>
 		  <%= link_to "Rate Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
 	  <% end %>

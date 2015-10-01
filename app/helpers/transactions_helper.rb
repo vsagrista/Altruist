@@ -6,7 +6,7 @@ module TransactionsHelper
   def calculate_skill_rating(transaction)
     updated_altruist_skill_rating = (Skill.find(transaction.skill_id).rating + params[:transaction][:rating].to_i) / 2
   	Skill.find(transaction.skill_id).update(rating: updated_altruist_skill_rating)
-  	#binding.pry
+    transaction.update(rated: true)  	
   end
 
   def change_minutes_in_users(transaction)
