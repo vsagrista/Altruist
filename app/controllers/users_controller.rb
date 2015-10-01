@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   def show
     if User.find(params[:id]) == current_user  
       @user = current_user
-      @transaction = Transaction.where(user_id: params[:id])   
+      @transaction = Transaction.where(user_id: params[:id])  
+      @transaction_to_rate = Transaction.where(creator_id: params[:id])
     else 
     	render :error 
     end
@@ -25,7 +26,6 @@ class UsersController < ApplicationController
   end
 
   def update 
-    binding.pry
   	User.find(params[:id]).update(user_params)
   	redirect_to user_path(params[:id])
   end

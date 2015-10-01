@@ -1,0 +1,4 @@
+<p>Created by <%= User.find(@transaction.creator_id).name %></p>
+<p>Accepted by <%= User.find(@transaction.user_id).name %></p>
+<%= link_to "Back to dashboard", user_path(current_user) %>
+

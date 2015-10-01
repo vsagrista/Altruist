@@ -1,6 +1,6 @@
 <% if @transaction.completed == false %>
 	<h1> You are about to validate some minutes, the altruist <%= User.find(@transaction.creator_id).name %> 
-	<br> is sending you <%= @transaction.minutes %> minutes. 
+	<br> is requesting <%= @transaction.minutes %> minutes from your time. 
 		<%= form_for [@user,@skill,@transaction] do |f| %>
 			<%= f.submit "Accept" %>
 		<% end %>

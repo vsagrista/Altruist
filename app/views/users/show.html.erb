@@ -10,6 +10,7 @@
 <% @transaction.each do |transaction|%>
 	  <% if transaction.completed  %>
 	      <p>Transaction with <%= User.find(transaction.creator_id).name %> completed! </p> 
+	      <%= link_to "View", user_skill_transaction_path(User.find(transaction.creator_id),Skill.find(transaction.skill_id),transaction)%>
 	  <% end %>
 <% end %>
 
@@ -22,32 +23,18 @@
   <% end %>
 
 <h2> Altruism waiting for my opinion </h2>
-<% @transaction.each do |transaction|%>
+<% @transaction_to_rate.each do |transaction|%>
 	  <% if transaction.rated == false %>
 		  <%= User.find(transaction.creator_id).name %>
-		  <%= link_to "Rate Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
+		  <%= link_to "Rate Transaction", edit_user_skill_transaction_path(transaction.creator_id, transaction.skill_id,transaction) %>
 	  <% end %>
   <% end %>
-
-
+<br>
 <% else %> 
   <p>You have no messages from other altruists yet</p>
 <% end %>
 
-<ul>
-	<% if @user.address.blank? %>
-		<li>Address: <%= "Hey #{@user.name}, this fiels looks empty, click on edit and fill it up!" %></li>
-	<% else %>
-	    <li>Address: <%= @user.address %></li> 
-	<% end  %>
-	<% if @user.phone.blank? %>
-		<li>Phone: <%=  "Hey #{@user.name}, this fiels looks empty, click on edit and fill it up!" %></li>
-	<% else %>
-	    <li>Phone: <%= @user.phone %></li> 
-	<% end  %>
-	<li><%= link_to "Edit my personal information", edit_user_path(@user) %></li>
-</ul>
-
+<%= link_to "Edit my personal information", edit_user_path(@user) %>
 <%= link_to "Find an altruits", users_path %>
 <%= link_to "Change Password", edit_user_registration_path %>
 <%= link_to "My Skills", user_skills_path(@user) %>

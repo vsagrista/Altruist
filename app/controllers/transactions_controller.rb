@@ -12,14 +12,15 @@ class TransactionsController < ApplicationController
 	end
 	def update 
 		if Transaction.find(params[:id]).completed 
-			
 			calculate_skill_rating(Transaction.find(params[:id]))
 		else 
-
 			update_to_completed(Transaction.find(params[:id])) 
 			change_minutes_in_users(Transaction.find(params[:id]))
 		end
 		redirect_to user_path(User.find(params[:user_id]))
+	end
+	def show 
+		@transaction = Transaction.find(params[:id])
 	end
 
 end
