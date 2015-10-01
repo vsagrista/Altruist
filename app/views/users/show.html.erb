@@ -6,18 +6,35 @@
 
 <h1>My Inbox</h1>
 <% if @transaction %>
+<h2> Completed Transactions </h2>
+<% @transaction.each do |transaction|%>
+	  <% if transaction.completed  %>
+	      <p>Transaction with <%= User.find(transaction.creator_id).name %> completed! </p> 
+	  <% end %>
+<% end %>
+
+<h2> Transactions to accept </h2>
 <% @transaction.each do |transaction|%>
 	  <% if transaction.completed == false %>
 		  <%= User.find(transaction.creator_id).name %>
 		  <%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
-	  <% else %>
-	      <p>Transaction with <%= User.find(transaction.creator_id).name %> completed! </p> 
 	  <% end %>
   <% end %>
-<ul>
+
+<h2> Waiting for your rating </h2>
+<% @transaction.each do |transaction|%>
+	  <% if Skill.find(transaction.skill_id).rated == false %>
+		  <%= User.find(transaction.creator_id).name %>
+		  <%= link_to "Rate Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
+	  <% end %>
+  <% end %>
+
+
 <% else %> 
   <p>You have no messages from other altruists yet</p>
 <% end %>
+
+<ul>
 	<% if @user.address.blank? %>
 		<li>Address: <%= "Hey #{@user.name}, this fiels looks empty, click on edit and fill it up!" %></li>
 	<% else %>
