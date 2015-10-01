@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :skills
   has_many :transactions
-  validates :name, :about, :email, :password, :address, presence: true
+  validates :name, :about, :email, :address, presence: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable # :trackable, :validatable
+
 end

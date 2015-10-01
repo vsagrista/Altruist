@@ -5,11 +5,19 @@
 </p>
 
 <h1>My Inbox</h1>
+<% if @transaction %>
 <% @transaction.each do |transaction|%>
-  <%= User.find(transaction.user_id).name %>
-  <%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
+	  <% if transaction.completed == false %>
+		  <%= User.find(transaction.user_id).name %>
+		  <%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
+	  <% else %>
+	      <p>Transaction with <%= User.find(transaction.creator_id).name %> completed! </p> 
+	  <% end %>
   <% end %>
 <ul>
+<% else %> 
+  <p>You have no messages from other altruists yet</p>
+<% end %>
 	<% if @user.address.blank? %>
 		<li>Address: <%= "Hey #{@user.name}, this fiels looks empty, click on edit and fill it up!" %></li>
 	<% else %>

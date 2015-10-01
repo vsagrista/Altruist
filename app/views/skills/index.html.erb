@@ -1,5 +1,8 @@
 
 <h1>Welcome <%=@user.name %>, these are your skills</h1>
+<% if @skills.empty? %>
+	<p>Ups, you have no skills yet! </p>
+<% end %>
 <% @skills.each do |skill| %>
 <p>Skill: <%= skill.name %></p>
 <p>Description: <%= skill.description %></p>
@@ -12,3 +15,5 @@
 	<p><%= link_to 'Delete', user_skill_path(skill.user_id, skill.id), :method => :delete, data: {confirm: "Are you sure?"} %></p>
 	<br>
 <% end %>
+<%= link_to "Add skill", new_user_skill_path(@user)%>
+<%= link_to "Back to dashboard", user_path(@user) %>

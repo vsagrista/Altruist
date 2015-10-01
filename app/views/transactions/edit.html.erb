@@ -1,10 +1,15 @@
-<h1> You are about to validate some minutes, the altruist <%= User.find(@transaction.user_id).name %> 
-<br> is sending you <%= @transaction.minutes %> minutes. 
-<br> Remember to give a rating from 0 to 10 depending on how happy you are! 
-</h1>
-<%= form_for [@user,@skill,@transaction] do |f| %>
-	<%= f.label :rating %>
-	<%= f.number_field :rating %>
-	<%= f.submit "Accept" %>
+<% unless @transaction.completed %>
+	<h1> You are about to validate some minutes, the altruist <%= User.find(@transaction.creator_id).name %> 
+	<br> is sending you <%= @transaction.minutes %> minutes. 
+	<br> Remember to give a rating from 0 to 10 depending on how happy you are! 
+	</h1>
+		<%= form_for [@user,@skill,@transaction] do |f| %>
+			<%= f.label :rating %>
+			<%= f.number_field :rating %>
+			<%= f.submit "Accept" %>
+		<% end %>
+<% else %>
+  <h1> No validations awaiting </h1>
 <% end %>
+<%= link_to "Back to dashboard", user_path(current_user) %>
 
