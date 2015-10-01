@@ -8,6 +8,7 @@ class SkillsController < ApplicationController
 	def show 
 		@user = User.find(params[:user_id])
 		@skill = @user.skills.where(id: params[:id])[0]
+		@transaction = Transaction.new
 	end
 
 	def edit

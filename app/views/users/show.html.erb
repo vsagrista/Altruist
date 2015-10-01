@@ -3,6 +3,12 @@
 <h1>My account</h1>
 <p>You have <strong> <%= @user.minutes %> minutes</strong>
 </p>
+
+<h1>My Inbox</h1>
+<% @transaction.each do |transaction|%>
+  <%= User.find(transaction.user_id).name %>
+  <%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
+  <% end %>
 <ul>
 	<% if @user.address.blank? %>
 		<li>Address: <%= "Hey #{@user.name}, this fiels looks empty, click on edit and fill it up!" %></li>

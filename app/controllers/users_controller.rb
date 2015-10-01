@@ -7,14 +7,14 @@ class UsersController < ApplicationController
     end
 
 	def index
-    #binding.pry
     @skills = Skill.where(name: params[:name])
     render :index
 	end
 
   def show
-    if User.find(params[:id]) == current_user 
+    if User.find(params[:id]) == current_user  
       @user = current_user
+      @transaction = Transaction.where(user_id: params[:id])   
     else 
     	render :error 
     end
