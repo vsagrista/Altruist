@@ -8,7 +8,7 @@
 <% if @transaction %>
 <% @transaction.each do |transaction|%>
 	  <% if transaction.completed == false %>
-		  <%= User.find(transaction.user_id).name %>
+		  <%= User.find(transaction.creator_id).name %>
 		  <%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
 	  <% else %>
 	      <p>Transaction with <%= User.find(transaction.creator_id).name %> completed! </p> 
