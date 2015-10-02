@@ -1,25 +1,25 @@
-<h1>Hello, <%= current_user.name %>
+<h1>Hello, <%= current_user.name %> </h1>
+<p>You have <strong> <%= current_user.minutes %> minutes</strong></p>
 <%= form_tag users_path, :method => 'get' do %>
-  <p>What skill are you searching for?
-   <%= text_field_tag :name, params[:name] %>
-   <%= text_field_tag :address, params[:address] %>
-   <%= submit_tag 'Search' %>
-  </p>
+	<p>What skill are you searching for?
+		<%= text_field_tag :name, params[:name] %>
+		<%= text_field_tag :address, params[:address] %>
+		<%= submit_tag 'Search' %>
+	</p>
 <% end %>
 <% if @skills.blank? %>
-  <p> Nothing found yet </p>
+	<p> Nothing found yet </p>
 <% else %>
 	<% @skills.sort! { |x, y| y["rating"] <=> x["rating"] }.each do |skill| %>
-		<% if current_user.id != skill.user_id %> 
+		<% if current_user.id != skill.user_id %>
 			<ul>
-		  	  <li>
-		  	    Name: <%= skill.name %>, rating: <%= skill.rating %>,
-		  	    Altruist: <%= User.find(skill.user_id).name %>, 
-		  	    <%= link_to "Contact this altruist", user_skill_path(skill.user_id,skill.id)%>
-		  	  </li>
+				<li>
+					Name: <%= skill.name %>, rating: <%= skill.rating %>,
+					Altruist: <%= User.find(skill.user_id).name %>,
+					<%= link_to "Contact this altruist", user_skill_path(skill.user_id,skill.id)%>
+				</li>
 			</ul>
 		<% end %>
 	<% end %>
 <% end %>
-
 <%= link_to "Back to dashboard", user_path(current_user) %>
