@@ -7,8 +7,17 @@ class UsersController < ApplicationController
     end
 
 	def index
-    @skills = Skill.where(name: params[:name])
-    binding.pry
+    @skills = []
+    if !params[:name].nil? && !params[:address].nil?
+      if !params[:name].empty? &&  !params[:address].empty?
+        location_search = Skill.where("address like ?", "%" + params[:address] + "%")
+        location_search.each do |item|
+          if item.name == params[:name]
+            @skills << item
+          end
+        end
+      end
+    end
     render :index
 	end
 

@@ -19,6 +19,7 @@ class SkillsController < ApplicationController
 	def update 
     	skill = User.find(params[:user_id]).skills.where(id: params[:id])
     	skill[0].update(skill_params)
+    	skill[0].update(User.find(params[:user_id]).address)
     	redirect_to user_skills_path
     end
 

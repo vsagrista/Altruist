@@ -9,7 +9,7 @@
 <% if @skills.blank? %>
   <p> Nothing found yet </p>
 <% else %>
-	<% @skills.all.order("rating DESC").each do |skill| %>
+	<% @skills.sort! { |x, y| y["rating"] <=> x["rating"] }.each do |skill| %>
 		<% if current_user.id != skill.user_id %> 
 			<ul>
 		  	  <li>
