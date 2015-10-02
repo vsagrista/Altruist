@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
 	def profile
       @user = current_user
-      render 'users/show'
+      redirect_to user_path(@user)
     end
 
 	def index
@@ -14,8 +14,10 @@ class UsersController < ApplicationController
   def show
     if User.find(params[:id]) == current_user  
       @user = current_user
-      @transaction = Transaction.where(user_id: params[:id])  
-      @transaction_to_rate = Transaction.where(creator_id: params[:id])
+      @transaction_received = Transaction.where(user_id: params[:id])
+      @transaction_created = Transaction.where(creator_id: params[:id])
+      @transaction_completed = Transaction.where(user_id: params[:id], completed: true)
+      
     else 
     	render :error 
     end

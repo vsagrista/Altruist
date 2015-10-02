@@ -4,35 +4,60 @@
 <p>You have <strong> <%= @user.minutes %> minutes</strong>
 </p>
 
-<h1>My Inbox</h1>
-<% if @transaction %>
-<h2> Completed Transactions with other Altruists </h2>
-<% @transaction.each do |transaction|%>
-	  <% if transaction.completed  %>
-	      <p>Transaction with <%= User.find(transaction.creator_id).name %> completed! </p> 
-	      <%= link_to "View", user_skill_transaction_path(User.find(transaction.creator_id),Skill.find(transaction.skill_id),transaction)%>
+<h1> My Iniciated Transactions <h2>
+
+<% @transaction_created.each do |transaction| %>
+	<p>With user: <%= transaction.user_id %></p>
+	<p>Status: 
+		<% if transaction.completed %>
+			<%= "Accepted" %>
+		<% else %>
+			<%= "Not Accepted yet" %>
+		<% end %> 
+	</p>
+<% end %>
+
+<h1> My received transactions </h1>
+
+<% @transaction_received.each do |transaction| %>
+	<p>From user: <%= transaction.creator_id %></p>
+	<% if transaction.completed == false %>
+		  	<p><%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
+		    </p>
 	  <% end %>
 <% end %>
 
-<h2> Minutes I have to validate </h2>
-<% @transaction.each do |transaction|%>
-	  <% if transaction.completed == false %>
-		  <%= User.find(transaction.creator_id).name %>
-		  <%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
-	  <% end %>
-  <% end %>
+<h1> My accepted transactions </h1>
 
-<h2> Altruism waiting for my opinion </h2>
-<% @transaction_to_rate.each do |transaction|%>
-	  <% if transaction.rated == false %>
-		  <%= User.find(transaction.creator_id).name %>
-		  <%= link_to "Rate Transaction", edit_user_skill_transaction_path(transaction.creator_id, transaction.skill_id,transaction) %>
+<% @transaction_completed.each do |transaction| %>
+	<p>With user: <%= transaction.creator_id %></p>
+	<% if transaction.completed == true %>
+		  	<p>Transaction ID: <%= transaction.id  %>
+		    </p>
+		    <br>
 	  <% end %>
-  <% end %>
-<br>
-<% else %> 
-  <p>You have no messages from other altruists yet</p>
 <% end %>
+
+<h1> Transactions waiting for my rating </h1>
+<% @transaction_created.each do |transaction| %>
+  <% if transaction.completed && transaction.rated == false %>
+	<p>With user: <%= transaction.creator_id %></p>
+		  	<p>
+		  		<%= link_to "Rate this Transaction", edit_user_skill_transaction_path(transaction.creator_id, transaction.skill_id,transaction) %>
+		    </p>
+		    <br>
+  <% end %>
+<% end %>
+
+<h1> My Rated Transactions </h1>
+<% @transaction_created.each do |transaction| %>
+  <% if transaction.rated %>
+	<p>With user: <%= transaction.creator_id %>. Your rating: <%= transaction.rating %></p>
+  <% end %>
+<% end %>
+
+
+
 
 <%= link_to "Edit my personal information", edit_user_path(@user) %>
 <%= link_to "Find an altruits", users_path %>
