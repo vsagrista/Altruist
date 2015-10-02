@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
 	def index
     @skills = Skill.where(name: params[:name])
+    binding.pry
     render :index
 	end
 
@@ -17,7 +18,6 @@ class UsersController < ApplicationController
       @transaction_received = Transaction.where(user_id: params[:id])
       @transaction_created = Transaction.where(creator_id: params[:id])
       @transaction_completed = Transaction.where(user_id: params[:id], completed: true)
-      
     else 
     	render :error 
     end
