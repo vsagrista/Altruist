@@ -7,20 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="top_bar">
-	  <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+	<div class="navbar navbar-custom">
+    <div class="navbar-inner navbar-custom">
+    <ul class="nav navbar-custom" id="nav">
+        <li><a href="mockup.html">Home</a></li>
+        <li><a href="search.html">New Search</a></li>
+        <li><a href="#">Settings</a></li>
+        <li id="top_bar"><%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
 		<%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
 		<%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
 	  <% if user_signed_in? %>
-	    <p><%= link_to 'Sign out', destroy_user_session_path, method: 'DELETE' %></p>
+	    <%= link_to 'Sign out', destroy_user_session_path, method: 'DELETE' %>
 	  <% else %>
 	   <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-	    <p>
+	    
 	      <%= link_to 'Sign_up', new_user_registration_path %> | 
 	      <%= link_to 'Sign_in', new_user_session_path %>
-	    </p>
-	  <% end %>
-  </div>
+	    
+	    <% end %>
+	</li>
+      </ul>
+    <h1 class="navbar-h1"> Altruist </h1>  
+    <a class="navbar-brand" href="index.html"> <img class="navbar-img" src="/assets/sharing.jpg" ></a>
+ 	</div>
+   </div> 
 <%= yield %>
 </body>
 </html>

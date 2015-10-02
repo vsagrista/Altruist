@@ -12,13 +12,13 @@
 <% else %>
 	<% @skills.sort! { |x, y| y["rating"] <=> x["rating"] }.each do |skill| %>
 		<% if current_user.id != skill.user_id %>
-			<ul>
-				<li>
-					Name: <%= skill.name %>, rating: <%= skill.rating %>,
-					Altruist: <%= User.find(skill.user_id).name %>,
-					<%= link_to "Contact this altruist", user_skill_path(skill.user_id,skill.id)%>
-				</li>
-			</ul>
+		<ul>
+			<li>
+				Name: <%= skill.name %>, rating: <%= skill.rating %>,
+				Altruist: <%= User.find(skill.user_id).name %>,
+				<%= link_to "Contact this altruist", user_skill_path(skill.user_id,skill.id)%>
+			</li>
+		</ul>
 		<% end %>
 	<% end %>
 <% end %>
