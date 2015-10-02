@@ -4,10 +4,10 @@
 <p>You have <strong> <%= @user.minutes %> minutes</strong>
 </p>
 
-<h1> My Iniciated Transactions <h2>
+<h1> My Iniciated Transactions </h1>
 
 <% @transaction_created.each do |transaction| %>
-	<p>With user: <%= transaction.user_id %></p>
+	<p>With user: <%= User.find(transaction.user_id).name %>, ID: <%= transaction.user_id %></p>
 	<p>Status: 
 		<% if transaction.completed %>
 			<%= "Accepted" %>
@@ -20,7 +20,7 @@
 <h1> My received transactions </h1>
 
 <% @transaction_received.each do |transaction| %>
-	<p>From user: <%= transaction.creator_id %></p>
+	<p>From user: <%= User.find(transaction.creator_id).name %>, ID: <%= transaction.creator_id %></p>
 	<% if transaction.completed == false %>
 		  	<p><%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
 		    </p>
@@ -30,7 +30,7 @@
 <h1> My accepted transactions </h1>
 
 <% @transaction_completed.each do |transaction| %>
-	<p>With user: <%= transaction.creator_id %></p>
+	<p>With user: <%= User.find(transaction.creator_id).name %>, ID:<%= transaction.creator_id %></p>
 	<% if transaction.completed == true %>
 		  	<p>Transaction ID: <%= transaction.id  %>
 		    </p>
@@ -41,7 +41,7 @@
 <h1> Transactions waiting for my rating </h1>
 <% @transaction_created.each do |transaction| %>
   <% if transaction.completed && transaction.rated == false %>
-	<p>With user: <%= transaction.creator_id %></p>
+	<p>With user: <%= User.find(transaction.creator_id).name %>, ID: <%= transaction.creator_id %></p>
 		  	<p>
 		  		<%= link_to "Rate this Transaction", edit_user_skill_transaction_path(transaction.creator_id, transaction.skill_id,transaction) %>
 		    </p>
@@ -52,7 +52,7 @@
 <h1> My Rated Transactions </h1>
 <% @transaction_created.each do |transaction| %>
   <% if transaction.rated %>
-	<p>With user: <%= transaction.creator_id %>. Your rating: <%= transaction.rating %></p>
+	<p>With user: <%= User.find(transaction.user_id).name %>, ID: <%= transaction.user_id %>, Your rating: <%= transaction.rating %></p>
   <% end %>
 <% end %>
 
