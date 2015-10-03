@@ -21,7 +21,6 @@ class TransactionsController < ApplicationController
 		else 
 			update_to_completed(Transaction.find(params[:id])) 
 		end
-		#redirect_to user_path(User.find(params[:user_id]))
 	end
 	def show 
 		@transaction = Transaction.find(params[:id])

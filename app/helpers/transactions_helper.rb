@@ -13,7 +13,7 @@ module TransactionsHelper
     end
     transaction.update(rating: params[:transaction][:rating].to_i,  rated: true) 	
     update_altruists_minutes(transaction)
-    redirect_to user_path(User.find(params[:user_id])), :notice => "Kudos for your altruism! #{User.find(transaction.user_id).name.capitalize} will appreciate your rating and the #{transaction.minutes} min you sent.      Thank you :)"
+    redirect_to user_path(User.find(params[:user_id])), :notice => "Kudos for your altruism! #{User.find(transaction.user_id).name.capitalize} will appreciate your rating and the #{transaction.minutes} min you sent. Thank you :)"
   end
 
   def update_altruists_minutes(transaction)
