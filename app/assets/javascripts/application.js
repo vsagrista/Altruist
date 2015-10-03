@@ -35,11 +35,24 @@ $(document).on('click',("#back-to-top"), function(event) {
     $('html, body').animate({scrollTop: $("#how-it-works").offset().top}, 500);
     return false
 });
+
 $(function() {
   setTimeout(function(){
     $('.alert').slideUp(1000);
-  }, 1000);
+  }, 2000);
 });
+
+$(document).on("input",".rating-input", function() {
+    if (parseInt($('.rating-input').val()) <= 10 && parseInt($('.rating-input').val()) > 0){   
+      $('.rating-input').css("background", "green");
+      $("#accepted").attr('value', 'Accept')
+    }
+    else {
+      $('.rating-input').css("background", "red");
+      $(".rating-input").attr('value', 'Invalid')
+    }
+});
+	
 
 
 

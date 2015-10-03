@@ -10,8 +10,8 @@
 	</h1>
 		<%= form_for [@user,@skill,@transaction] do |f| %>
 			<%= f.label :rating %>
-			<%= f.number_field :rating %>
-			<%= f.submit "Accept" %>
+			<%= f.number_field :rating, class: "rating-input" %>
+			<%= f.submit "Accept", id:"accepted", class: "rating-input accepted" %>
 		<% end %>
 <% else %>
   <h1> No validations awaiting </h1>
