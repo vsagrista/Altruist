@@ -12,11 +12,7 @@ class UsersController < ApplicationController
     if !params[:name].nil? && !params[:address].nil?
       if !params[:name].empty? &&  !params[:address].empty?
         location_search = find_skills_that_match_typed_address(params[:address])  
-        location_search.each do |item|
-          if item.name.downcase == params[:name].downcase
-            @skills << item
-          end
-        end
+        @skills = find_skills_on_that_address_that_match_user_search(location_search,params[:name])
       end
     end
     render :index

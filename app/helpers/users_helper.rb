@@ -8,4 +8,13 @@ module UsersHelper
 		end
 		locations
 	end
+	def find_skills_on_that_address_that_match_user_search(location_search,skill)
+		skills = []
+		location_search.each do |item|
+          if item.name.downcase == params[:name].downcase
+            skills << item
+          end
+        end
+        skills 
+    end
 end

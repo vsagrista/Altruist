@@ -1,4 +1,5 @@
 <% if @transaction.completed == false %>
+<p>Remember, you have: <strong> <%= current_user.minutes %> minutes</strong>(You cannot send more than this)</p>
 	<h1> You are about to validate some minutes, the altruist <%= User.find(@transaction.creator_id).name %> 
 	<br> is requesting <%= @transaction.minutes %> minutes from your time. 
 		<%= form_for [@user,@skill,@transaction] do |f| %>
