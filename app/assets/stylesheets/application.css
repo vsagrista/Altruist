@@ -32,6 +32,15 @@
 .logo-nav > h1 {
     width: 45%;
 }
+
+.error-messages {
+    width: 50%;
+    top:0;
+    position: absolute;
+    background: red;
+    color: white;
+}
+
 .carousel-inner .item{
     min-height: 650px;
     max-height: 650px;
