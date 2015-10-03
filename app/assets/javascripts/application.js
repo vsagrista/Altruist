@@ -35,8 +35,11 @@ $(document).on('click',("#back-to-top"), function(event) {
     $('html, body').animate({scrollTop: $("#how-it-works").offset().top}, 500);
     return false
 });
-
-
+$(function() {
+  setTimeout(function(){
+    $('.alert').slideUp(1000);
+  }, 1000);
+});
 
 
 

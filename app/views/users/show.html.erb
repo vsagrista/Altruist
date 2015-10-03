@@ -1,4 +1,4 @@
-<h2>Welcome <%= @user.name %></h2>
+<h2>Welcome <%= @user.name.capitalize %></h2>
 
 <h1>Dashboard</h1>
 <p>You have <strong> <%= @user.minutes %> minutes</strong>
@@ -9,7 +9,7 @@
 <% if @any_created_transaction_pending %>
 	<% @transaction_created.each do |transaction| %>
 			<% if !transaction.completed %>
-			<p>With user: <%= User.find(transaction.user_id).name %>, 
+			<p>With user: <%= User.find(transaction.user_id).name.capitalize %>, 
 			  ID: <%= transaction.user_id %></p>
 			<p>Status: 
 				<%= "Not Accepted yet, ID: #{transaction.id}" %>
@@ -25,7 +25,7 @@
 
 	<% @transaction_received.each do |transaction| %>
 	<% if transaction.completed == false %>
-		<p>From user: <%= User.find(transaction.creator_id).name %>, ID: <%= transaction.creator_id %></p>
+		<p>From user: <%= User.find(transaction.creator_id).name.capitalize %>, ID: <%= transaction.creator_id %></p>
 			  	<p><%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction) %>
 			    </p>
 		  <% end %>
@@ -35,10 +35,10 @@
 	<p>Not any yet</p>
 <% end %>
 
-<h1> My accepted transactions </h1>
+<h1> Waiting for others rating </h1>
 
 <% @transaction_completed.each do |transaction| %>
-	<p>With user: <%= User.find(transaction.creator_id).name %>, ID:<%= transaction.creator_id %></p>
+	<p>With user: <%= User.find(transaction.creator_id).name.capitalize %>, ID:<%= transaction.creator_id %></p>
 	<% if transaction.completed == true %>
 		  	<p>Transaction ID: <%= transaction.id  %>
 		    </p>
@@ -49,7 +49,7 @@
 <h1> Transactions waiting for my rating </h1>
 <% @transaction_created.each do |transaction| %>
   <% if transaction.completed && transaction.rated == false %>
-	<p>With user: <%= User.find(transaction.creator_id).name %>, ID: <%= transaction.creator_id %></p>
+	<p>With user: <%= User.find(transaction.creator_id).name.capitalize %>, ID: <%= transaction.creator_id %></p>
 		  	<p>
 		  		<%= link_to "Rate this Transaction", edit_user_skill_transaction_path(transaction.creator_id, transaction.skill_id,transaction) %>
 		    </p>
@@ -58,11 +58,10 @@
 <% end %>
 
 
-
 <h1> My Rated Transactions </h1>
 <% @transaction_created.each do |transaction| %>
   <% if transaction.rated %>
-	<p>With user: <%= User.find(transaction.user_id).name %>, ID: <%= transaction.user_id %>, Your rating: <%= transaction.rating %></p>
+	<p>With user: <%= User.find(transaction.user_id).name.capitalize %>, ID: <%= transaction.user_id %>, Your rating: <%= transaction.rating %></p>
   <% end %>
 <% end %>
 
