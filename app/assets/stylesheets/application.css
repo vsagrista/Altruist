@@ -22,7 +22,14 @@
     height: 22%;
     margin-bottom: -1.5%;
     background-color: rgba(0,0,0,0.75);
-    padding: 1%;  
+    padding: 1%;
+    font-size: 0.8em;  
+}
+.sign-up-button {
+    width: 15%;
+    margin-top: -1% !important;
+    height: 35%;
+    font-size: 2em;
 }
 
 
