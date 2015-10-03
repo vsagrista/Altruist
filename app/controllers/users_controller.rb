@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include UsersHelper
 	before_action :authenticate_user!
 
 	def profile
@@ -10,9 +11,9 @@ class UsersController < ApplicationController
     @skills = []
     if !params[:name].nil? && !params[:address].nil?
       if !params[:name].empty? &&  !params[:address].empty?
-        location_search = Skill.where("address like ?", "%" + params[:address] + "%")
+        location_search = find_skills_that_match_typed_address(params[:address])  
         location_search.each do |item|
-          if item.name == params[:name]
+          if item.name.downcase == params[:name].downcase
             @skills << item
           end
         end

@@ -54,7 +54,7 @@
               <p class="lead">Johny can help you get something fixed at your home. He's really good at handymanship. It will only cost you
                 some minutes once you sign up to our altruist project, totally free, of course!
               </p>
-              <a class="btn btn-large btn-primary" href="#">Sign Up</a>
+              <%= link_to "Join", new_registration_path(resource_name), class: "btn btn-large btn-primary " %>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@
             <div class="carousel-caption carousel-div">
               <h1 class="carousel-h1">Looking for a tutor?</h1>
               <p class="lead">Philip can help your kid rock in math or English. He'll be happy to be paid in in minutes from your minutes bank that you can use for payments with Altruist.</p>
-              <a class="btn btn-large btn-primary " href="#">Sign up</a>
+              <%= link_to "Join", new_registration_path(resource_name), class: "btn btn-large btn-primary " %>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@
             <div class="carousel-caption carousel-div">
               <h1 class="carousel-h1">Maybe your car needs an oil change?</h1>
               <p class="lead">James will be happy to get some minutes by fixing your car. He is one of the many people that are using Altruist helping others by  sharing something he can do with others.</p>
-              <a class="btn btn-large btn-primary" href="#">Sign Up</a>
+              <%= link_to "Join", new_registration_path(resource_name), class: "btn btn-large btn-primary " %>
             </div>
           </div>
         </div>
@@ -113,7 +113,9 @@
     <div class="jumbotron join-jumbotron">
         <h1>Welcome!</h1>
         <p>Click on the button to join.</p>
-        <p><a href="#" class="btn btn-success btn-lg join-btn">Join</a></p>
+        <p>
+            <%= link_to "Join", new_registration_path(resource_name), class: "btn btn-success btn-lg join-btn " %>
+        </p>
     </div>
 </div>
 
