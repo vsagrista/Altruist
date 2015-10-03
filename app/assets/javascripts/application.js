@@ -15,3 +15,13 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+
+$(document).on("click", ".log-in", function(event){
+	event.preventDefault()
+	$(".js-modal").modal();
+});
+$(document).on("click", ".sign-up", function(event){
+	event.preventDefault()
+	$(".js-modal").modal();
+});

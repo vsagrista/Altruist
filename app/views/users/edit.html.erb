@@ -10,4 +10,5 @@
 	<%= f.text_field :address %>
 	<%= f.submit "Save changes" %>
 <% end %>
+<p class="sensitive-change"><%= link_to "Change Password or Email", edit_user_registration_path %></p>
 <%= link_to "Back to dashboard", user_path(current_user) %>

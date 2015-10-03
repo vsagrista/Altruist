@@ -9,27 +9,32 @@
 <body>
 	<div class="navbar navbar-custom">
     <div class="navbar-inner navbar-custom">
-    <ul class="nav navbar-custom" id="nav">
-        <li><a href="mockup.html">Home</a></li>
-        <li><a href="search.html">New Search</a></li>
-        <li><a href="#">Settings</a></li>
-        <li id="top_bar"><%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-		<%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
-		<%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
-	  <% if user_signed_in? %>
+    <ul class="nav navbar-custom navbar-ul" id="nav">
+        <li>
+        	<% if user_signed_in? %>
+        	  <%= link_to 'Home', user_path(current_user) %>
+        	<% else %>
+        	  <%= link_to 'Log In', new_user_session_path, class: "log-in" %> 
+        	  <li><a href="#">How It Works</a></li>
+        	<%end %>
+        </li>
+        
+        <% if user_signed_in? %>
+        <li><%= link_to "New Search", users_path %></li>
+        <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+        <li>
 	    <%= link_to 'Sign out', destroy_user_session_path, method: 'DELETE' %>
-	  <% else %>
-	   <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-	    
-	      <%= link_to 'Sign_up', new_user_registration_path %> | 
-	      <%= link_to 'Sign_in', new_user_session_path %>
-	    
 	    <% end %>
+		</li>
+		<li class="logo-nav"><h1 class="navbar-h1"> Altruist </h1>  
+    <img class="navbar-img" src="/assets/sharing.jpg" >
+ 	</div></li>
+
+
+
 	</li>
       </ul>
-    <h1 class="navbar-h1"> Altruist </h1>  
-    <a class="navbar-brand" href="index.html"> <img class="navbar-img" src="/assets/sharing.jpg" ></a>
- 	</div>
+    
    </div> 
 <%= yield %>
 </body>
