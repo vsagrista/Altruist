@@ -25,6 +25,7 @@ class UsersController < ApplicationController
       @transaction_created = Transaction.where(creator_id: params[:id])
       @transaction_completed = Transaction.where(user_id: params[:id], completed: true)
       @any_created_transaction_pending = @transaction_created.select { |t| !t.completed }.any?
+      @meetings = Meeting.all
     else
       render :error
     end

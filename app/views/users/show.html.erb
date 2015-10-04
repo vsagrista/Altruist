@@ -73,11 +73,16 @@
 
 		<div class="col-md-6">
 			<div class="show-user-row">
-				<h1 class="show-user-header header-row"> CALENDAR </h1>
-				<%= month_calendar do |date| %>
-  <%= date %>
-<% end %>
-			
+				<h1 class="show-user-header header-row toggle"> CALENDAR </h1>
+				<%= month_calendar events: @meetings do |date, meetings| %>
+  				 <%= date %>
+ 				 <p>Name: <% meetings.each do |meeting| %></p>
+    <div>
+      <%= meeting.name %>
+    </div>
+  <% end %>
+<% end %>	
+
 			<h1 class="show-user-header header-row"> STATS </h1>
 			
 				<div class="awaiting-to-rate show-drop">
