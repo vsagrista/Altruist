@@ -14,25 +14,6 @@
  *= require_self
  */
 
-.label {
-    position: absolute;
-    left: 0;
-    right: 0;
-    text-align: left;
-    height: 22%;
-    margin-bottom: -1.5%;
-    background-color: rgba(0,0,0,0.75);
-    padding: 1%;
-    font-size: 0.8em;  
-}
-.sign-up-button {
-    width: 15%;
-    margin-top: -1% !important;
-    height: 35%;
-    font-size: 2em;
-}
-
-
 .navbar-custom > li{
     line-height: 45px;
 }
@@ -75,15 +56,36 @@
 	font-weight: bold;
 }
 
+.label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: left;
+    height: 22%;
+    margin-bottom: -1.5%;
+    background-color: rgba(0,0,0,0.75);
+    padding: 1%;
+    font-size: 0.8em;  
+}
+
+.sign-up-button {
+    width: 15%;
+    margin-top: -1% !important;
+    height: 35%;
+    font-size: 2em;
+}
+
 .carousel-h1 {
     margin-top: -5px;
     margin-bottom: 5px;
     color:#B3BABD;
 }
+
 .carousel p  {
     color:silver;
     font-size: 1.5em;
 }
+
 .car-div {
     height: 110px;
     margin-top: -15%;
@@ -95,10 +97,12 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
 .navbar-brand {
     float: right;
     margin-right: 105px;
 }
+
 .navbar-img {
     width: 95px;
     float: right;
@@ -106,6 +110,7 @@
     top: 2px;
     border-radius: 12px;
 }
+
 .navbar-h1 {
     float: right;
     color:#4E4A4A;
@@ -127,10 +132,12 @@
     padding-bottom: 40px;
     font-size: 1.5em;
 }
+
 .span  > h2{
     font-size: 2em;
     
 } 
+
 .span  > p {
     color: #2A8EA5;
 }
@@ -146,10 +153,12 @@
     
     text-align: center;
 }
+
 .join-btn{
     width: 150px;
     font-size: 1.2em
 }
+
 .user-pic {
     margin-top: 10px;
     width: 100px;
@@ -165,6 +174,7 @@
     margin-top: 20px;
 
 }
+
 .form-inline > .form-group {
     vertical-align: top;
 }
@@ -177,22 +187,19 @@
     width: 700px;
     height: 500px;
     margin: 0 auto;
-    margin-bottom: 20px;
-    /*border: 1px solid grey;*/
-    
-      }
+    margin-bottom: 20px;    
+}
+
 .search-labels {
     width: 700px;
     background-color: transparent;
     font-style: oblique;
-    /*color:bisque;*/
     color: #757582;
     color:black;
     opacity: 0.9;
     text-align: center;
     margin: 0 auto;
-    padding-bottom: 0;
-    
+    padding-bottom: 0;    
 }
 
 
@@ -216,5 +223,46 @@
 .settings-buttons {
     width: 30% !important;
 }
+
+.show-user-container {
+    width: 100%;
+    text-align: center;
+}
+
+.show-user-row{
+    width: 100%;
+    margin: 0 auto;
+    float: left;
+}
+.calendar{
+    float: right;
+    height: 200px;
+}
+
+.show-user-row {
+    background-color: lightgrey;
+
+}
+.show-user-header{
+    background-color: #988B8B;
+    margin-top: 0;
+    padding: 2%;
+}
+
+.has-content {
+    background: green;
+    color: white;
+    padding: 2%;
+    margin: 0
+}
+
+.toggle:nth-child(even) {
+    border-top: 1px solid black
+}
+
+
+
+
+
 
 

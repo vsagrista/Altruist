@@ -52,6 +52,38 @@ $(document).on("input",".rating-input", function() {
       $(".rating-input").attr('value', 'Invalid')
     }
 });
+
+$(document).ready(function() {
+  $(".drop-show-p").hide();
+  $(".toggle").click(function(event) {
+event.preventDefault();
+    $(this).siblings(".drop-show-p").slideToggle('slow')
+      //$()
+      //$(this).find("p","a").slideToggle('slow');
+
+      
+  });
+});
+
+
+$(document).ready(function(){
+  if($(".awaiting-to-accept").find("p").length != 0){
+    var length = $(".awaiting-to-accept").find("p").length 
+  $(".awaiting-to-accept > h1").addClass("has-content").append("<strong>"+" ("+ length+")" +"</strong>")
+  }
+  if ($(".awaiting-to-rate").find("p").length != 0){
+    var length = $(".awaiting-to-rate").find("p").length  
+  $(".awaiting-to-rate > h1").addClass("has-content").append("<strong>"+" ("+ length+")" +"</strong>")
+  }
+  if ($(".pending-to-accept").find("p").length != 0){
+    var length = $(".pending-to-accept").find("p").length   
+  $(".pending-to-accept > h1").addClass("has-content").append("<strong>"+" ("+ length+")" +"</strong>")
+  }
+  if ($(".pending-to-rate").find("p").length != 0){
+    var length = $(".pending-to-rate").find("p").length 
+  $(".pending-to-rate > h1").addClass("has-content").append("<strong>"+" ("+ length+")" +"</strong>")
+  }
+});
 	
 
 
