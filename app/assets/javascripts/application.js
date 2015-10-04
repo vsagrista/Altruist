@@ -67,19 +67,19 @@ event.preventDefault();
 $(document).ready(function(){
   if($(".awaiting-to-accept").find("p").length != 0){
     var length = $(".awaiting-to-accept").find("p").length 
-  $(".awaiting-to-accept > h1").addClass("has-content").append("<strong>"+" ("+ length+")" +"</strong>")
+  $(".awaiting-to-accept > h1").addClass("has-content").append(" ("+ length+")")
   }
   if ($(".awaiting-to-rate").find("p").length != 0){
     var length = $(".awaiting-to-rate").find("p").length  
-  $(".awaiting-to-rate > h1").addClass("has-content").append("<strong>"+" ("+ length+")" +"</strong>")
+  $(".awaiting-to-rate > h1").addClass("has-content").append(" ("+ length+")")
   }
   if ($(".pending-to-accept").find("p").length != 0){
     var length = $(".pending-to-accept").find("p").length   
-  $(".pending-to-accept > h1").addClass("has-content").append("<strong>"+" ("+ length+")" +"</strong>")
+  $(".pending-to-accept > h1").addClass("has-content").append(" ("+ length+")")
   }
   if ($(".pending-to-rate").find("p").length != 0){
     var length = $(".pending-to-rate").find("p").length 
-  $(".pending-to-rate > h1").addClass("has-content").append("<strong>"+" ("+ length+")" +"</strong>")
+  $(".pending-to-rate > h1").addClass("has-content").append(" ("+ length+")")
   }
 });
 

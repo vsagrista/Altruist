@@ -14,6 +14,10 @@
  *= require_self
  */
 
+body{
+    background: url(/assets/city-background.jpg);
+}
+
 .navbar-custom > li{
     line-height: 45px;
 }
@@ -202,8 +206,6 @@
     padding-bottom: 0;    
 }
 
-
-
 .search-labels h1,h2{
     font-weight: lighter;
 }
@@ -227,16 +229,25 @@
 .show-user-container {
     width: 100%;
     text-align: center;
+    opacity: 0.9;
+    margin-bottom: 3%;
+    
 }
+
+.header-row, .drop-show-p {
+    font-weight: 200;
+}
+
 
 .show-user-row{
     width: 100%;
     margin: 0 auto;
     float: left;
+    font-weight: 200;
 }
 .calendar{
     float: right;
-    height: 200px;
+    height: 200px !important;
 }
 
 .show-user-row {
@@ -266,12 +277,14 @@
     text-align: center;
 }
 .skill-icon-area-container {
+    background: url(/assets/abstract-background.jpg);
     text-align: center;
     margin: 0;
     background-color: #4DCCE0;;
     margin: 0;
     padding: 2%;
     font-size: 1.2em;
+    color:white;
 }
 
 .skills-logo-area p > a {
@@ -281,6 +294,8 @@
 .dashboard {
     text-align: center;
     margin: 2%;
+    font-weight: lighter;
+    font-size: 4em;
 }
 
 .name {
