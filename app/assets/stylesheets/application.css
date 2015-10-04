@@ -256,10 +256,40 @@
     margin: 0
 }
 
-.toggle:nth-child(even) {
-    border-top: 1px solid black
+
+.skills-icon{
+    width: 75px;
+}
+.skills-icon-area {
+    width: 20%;
+    border: 1px solid black;
+    text-align: center;
+}
+.skill-icon-area-container {
+    text-align: center;
+    margin: 0;
+    background-color: #4DCCE0;;
+    margin: 0;
+    padding: 2%;
+    font-size: 1.2em;
 }
 
+.skills-logo-area p > a {
+    color: black;
+}
+
+.dashboard {
+    text-align: center;
+    margin: 2%;
+}
+
+.name {
+    font-size: 3em;
+}
+
+.awaiting-to-rate {
+    margin-bottom: 3%;
+}
 
 
 
