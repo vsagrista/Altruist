@@ -28,6 +28,8 @@ gem 'devise'
 
 gem 'jquery-turbolinks'
 
+gem "simple_calendar", "~> 2.0"
+
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 # Use ActiveModel has_secure_password

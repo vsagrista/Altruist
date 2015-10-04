@@ -151,6 +151,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_calendar (2.0.2)
+      rails (>= 3.0)
     slop (3.6.0)
     spring (1.4.0)
     sprockets (3.3.5)
@@ -192,6 +194,7 @@ DEPENDENCIES
   rails (= 4.2.3)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simple_calendar (~> 2.0)
   spring
   turbolinks
   twitter-bootstrap-rails!
