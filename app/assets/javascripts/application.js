@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+//= require jquery.turbolinks
 
 
 $(document).on("click", ".log-in", function(event){
@@ -58,9 +59,6 @@ $(document).ready(function() {
   $(".toggle").click(function(event) {
 event.preventDefault();
     $(this).siblings(".drop-show-p").slideToggle('slow')
-      //$()
-      //$(this).find("p","a").slideToggle('slow');
-
       
   });
 });
@@ -84,7 +82,6 @@ $(document).ready(function(){
   $(".pending-to-rate > h1").addClass("has-content").append("<strong>"+" ("+ length+")" +"</strong>")
   }
 });
-	
 
 
 
