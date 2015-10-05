@@ -1,107 +1,116 @@
-    <div class="wrapper skill-icon-area-container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2 class="name">Welcome, <%= @user.name.capitalize %></h2>
+<div class="wrapper skill-icon-area-container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="name">Welcome, <%= @user.name.capitalize %></h2>
 
-                <p>You have <strong><%= @user.minutes %> minutes</strong></p>
-            </div>
+            <p>You have <strong><%= @user.minutes %> minutes</strong></p>
+        </div>
 
-            <div class="col-md-6">
-                <div class="skills-logo-area">
-                    <img class="skills-icon" src="/assets/skills-icon.png">
+        <div class="col-md-6">
+            <div class="skills-logo-area">
+                <img class="skills-icon" src="/assets/skills-icon.png">
 
-                    <p><%= link_to "My Skills",user_skills_path(@user) %></p>
-                </div>
+                <p><%= link_to "My Skills",user_skills_path(@user) %></p>
             </div>
         </div>
     </div>
+</div>
 
-    <h1 class="dashboard">Dashboard</h1>
+<h1 class="dashboard">Dashboard</h1>
 
-    <div class="container show-user-container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="show-user-row">
-                    <h1 class="show-user-header header-row">RECEIVED</h1>
+<div class="container show-user-container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="show-user-row">
+                <h1 class="show-user-header header-row">RECEIVED</h1>
 
-                    <div class="pending-to-accept show-drop">
-                        <h1 class="toggle header-row">To
-                        Accept</h1><% @transaction_received.each do |transaction| %><% if transaction.completed == false %>
-
-                        <p class="drop-show-p">From user:
-                        <%= User.find(transaction.creator_id).name.capitalize %>,
-                        transaction ID:
-                        <%= transaction.id %></p><%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction), class: "drop-show-p" %><% end %><% end %>
-                    </div>
-
-                    <div class="pending-to-rate show-drop">
-                        <h1 class="toggle header-row">To
-                        Rate</h1><% @transaction_created.each do |transaction| %><% if transaction.completed && transaction.rated == false %>
-
-                        <p class="drop-show-p">With user:
-                        <%= User.find(transaction.user_id).name.capitalize %>,
-                        ID:
-                        <%= transaction.user_id %></p><%= link_to "Rate this Transaction", edit_user_skill_transaction_path(transaction.creator_id, transaction.skill_id,transaction), class: "drop-show-p" %><% end %><% end %>
-                    </div>
+                <div class="pending-to-accept show-drop">
+                    <h1 class="toggle header-row">To Accept</h1>
+                    <% @transaction_received.each do |transaction| %>
+                        <% if transaction.completed == false %>
+                            <p class="drop-show-p">From user:
+                            <%= User.find(transaction.creator_id).name.capitalize %>,
+                            transaction ID:
+                            <%= transaction.id %></p><%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction), class: "drop-show-p" %><% end %>
+                        <% end %>
                 </div>
 
-                <div class="show-user-row">
-                    <h1 class="show-user-header header-row">SENT</h1>
-
-                    <div class="awaiting-to-accept show-drop">
-                        <h1 class="toggle header-row">Not
-                        accepted</h1><% if @any_created_transaction_pending %><% @transaction_created.each do |transaction| %><% if !transaction.completed %>
-
-                        <p class="drop-show-p">Waiting for:
-                        <%= User.find(transaction.user_id).name.capitalize %>
-                        to accept, Transaction ID:
-                        <%= transaction.id %></p><% end %><% end %><% end %>
-                    </div>
-
-                    <div class="awaiting-to-rate show-drop">
-                        <h1 class="toggle header-row">Not Rated
-                        Yet</h1><% @transaction_completed.each do |transaction| %><% unless transaction.rated %>
-
-                        <p class="drop-show-p">From altruist:
-                        <%= User.find(transaction.creator_id).name.capitalize %>,
-                        ID:<%= transaction.creator_id %>, transaction ID:
-                        Transaction:
-                        <%= transaction.id %></p><% end %><% end %>
-                    </div>
+                <div class="pending-to-rate show-drop">
+                    <h1 class="toggle header-row">To Rate</h1>
+                    <% @transaction_created.each do |transaction| %>
+                        <% if transaction.completed && transaction.rated == false %>
+                            <p class="drop-show-p">With user:
+                            <%= User.find(transaction.user_id).name.capitalize %>,
+                            ID:
+                            <%= transaction.user_id %></p><%= link_to "Rate this Transaction", edit_user_skill_transaction_path(transaction.creator_id, transaction.skill_id,transaction), class: "drop-show-p" %>
+                        <% end %>
+                    <% end %>
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="show-user-row">
-                    <h1 class="show-user-header header-row toggle">
-                    CALENDAR</h1><%= month_calendar events: @meetings do |date, meetings| %><%= date %>
+            <div class="show-user-row">
+                <h1 class="show-user-header header-row">SENT</h1>
 
+                <div class="awaiting-to-accept show-drop">
+                    <h1 class="toggle header-row">Not accepted</h1>
+                    <% if @any_created_transaction_pending %>
+                        <% @transaction_created.each do |transaction| %>
+                            <% if !transaction.completed %>
+                                <p class="drop-show-p">Waiting for:
+                                <%= User.find(transaction.user_id).name.capitalize %>
+                                to accept, Transaction ID:
+                                <%= transaction.id %></p>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                </div>
+
+                <div class="awaiting-to-rate show-drop">
+                    <h1 class="toggle header-row">Not Rated Yet</h1>
+                    <% @transaction_completed.each do |transaction| %>
+                        <% unless transaction.rated %>
+                            <p class="drop-show-p">From altruist:
+                            <%= User.find(transaction.creator_id).name.capitalize %>,
+                            ID:<%= transaction.creator_id %>, transaction ID:
+                            Transaction:
+                            <%= transaction.id %></p>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="show-user-row">
+                <h1 class="show-user-header header-row toggle">CALENDAR</h1>
+                <%= month_calendar events: @meetings do |date, meetings| %>
+                    <%= date %>
                     <p>Name: <% meetings.each do |meeting| %></p>
-
                     <div>
                         <%= meeting.name %>
-                    </div><% end %><% end %>
+                    </div><% end %>
+                <% end %>
 
-                    <h1 class="show-user-header header-row">STATS</h1>
+                <h1 class="show-user-header header-row">STATS</h1>
 
-                    <div class="awaiting-to-rate show-drop">
-                        <h1 class="toggle header-row">As
-                        Altruist</h1><% Transaction.where(user_id: current_user.id).all.each do |transaction| %>
-
+                <div class="awaiting-to-rate show-drop">
+                    <h1 class="toggle header-row">As Altruist</h1>
+                    <% Transaction.where(user_id: current_user.id).all.each do |transaction| %>
                         <p class="drop-show-p">Altruist I helped:
                         <%= User.find(transaction.creator_id).name.capitalize %>,
-                        ID:<%= transaction.id %></p><% end %>
-                    </div>
+                        ID:<%= transaction.id %></p>
+                    <% end %>
+                </div>
 
-                    <div class="awaiting-to-rate show-drop">
-                        <h1 class="toggle header-row">From
-                        Altruist</h1><% Transaction.where(creator_id: current_user.id).all.each do |transaction| %>
-
+                <div class="awaiting-to-rate show-drop">
+                    <h1 class="toggle header-row">From Altruist</h1>
+                    <% Transaction.where(creator_id: current_user.id).all.each do |transaction| %>
                         <p class="drop-show-p">Altruist:
                         <%= User.find(transaction.user_id).name.capitalize %>,
-                        ID:<%= transaction.id %></p><% end %>
-                    </div>
+                        ID:<%= transaction.id %></p>
+                    <% end %>
                 </div>
             </div>
         </div>
     </div>
+</div>
