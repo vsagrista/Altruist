@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   include UsersHelper
   before_action :authenticate_user!
+  
 
   def profile
     @user = current_user

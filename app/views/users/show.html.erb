@@ -4,72 +4,63 @@
             <h2 class="name">Welcome, <%= @user.name.capitalize %></h2>
             <p>You have <strong><%= @user.minutes %> minutes</strong></p>
         </div>
-
         <div class="col-md-6">
             <div class="skills-logo-area">
                 <img class="skills-icon" src="/assets/skills-icon.png">
-
                 <p><%= link_to "My Skills",user_skills_path(@user) %></p>
             </div>
         </div>
     </div>
 </div>
-
 <h1 class="dashboard">Dashboard</h1>
-
 <div class="container show-user-container">
     <div class="row">
         <div class="col-md-6">
             <div class="show-user-row">
                 <h1 class="show-user-header header-row">RECEIVED</h1>
-
                 <div class="pending-to-accept show-drop">
                     <h1 class="toggle header-row">To Accept</h1>
                     <% @transaction_received.each do |transaction| %>
                         <% if transaction.completed == false %>
                             <p class="drop-show-p">From user:
-                            <%= User.find(transaction.creator_id).name.capitalize %>,
+                            <%= find_creator(transaction) %>,
                             transaction ID:
                             <%= transaction.id %></p><%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction), class: "drop-show-p" %><% end %>
                         <% end %>
                 </div>
-
                 <div class="pending-to-rate show-drop">
                     <h1 class="toggle header-row">To Rate</h1>
                     <% @transaction_created.each do |transaction| %>
                         <% if transaction.completed && transaction.rated == false %>
                             <p class="drop-show-p">With user:
-                            <%= User.find(transaction.user_id).name.capitalize %>,
+                            <%= find_receiver(transaction) %>,
                             ID:
                             <%= transaction.user_id %></p><%= link_to "Rate this Transaction", edit_user_skill_transaction_path(transaction.creator_id, transaction.skill_id,transaction), class: "drop-show-p" %>
                         <% end %>
                     <% end %>
                 </div>
             </div>
-
             <div class="show-user-row">
                 <h1 class="show-user-header header-row">SENT</h1>
-
                 <div class="awaiting-to-accept show-drop">
                     <h1 class="toggle header-row">Not Accepted Yet</h1>
                     <% if @any_created_transaction_pending %>
                         <% @transaction_created.each do |transaction| %>
                             <% if !transaction.completed %>
                                 <p class="drop-show-p">Waiting for:
-                                <%= User.find(transaction.user_id).name.capitalize %>
+                                <%= find_receiver(transaction) %>
                                 to accept, Transaction ID:
                                 <%= transaction.id %></p>
                             <% end %>
                         <% end %>
                     <% end %>
                 </div>
-
                 <div class="awaiting-to-rate show-drop">
                     <h1 class="toggle header-row">Not Rated Yet</h1>
                     <% @transaction_completed.each do |transaction| %>
                         <% unless transaction.rated %>
                             <p class="drop-show-p">From altruist:
-                            <%= User.find(transaction.creator_id).name.capitalize %>,
+                            <%= find_creator(transaction) %>,
                             ID:<%= transaction.creator_id %>, transaction ID:
                             Transaction:
                             <%= transaction.id %></p>
@@ -78,50 +69,42 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-6">
             <div class="show-user-row">
                 <h1 class="show-user-header header-row toggle">CALENDAR</h1>
-
-
                  <%= month_calendar events: @meetings do |date| %>
                   <p class="date"><%= date %></p>
-                  <% if Transaction.where(date: date) %>
-                    <% Transaction.where(date: date).each do |transaction| %>
+                  <% if find_transaction_from_date(date) %>
+                    <% find_transaction_from_date(date).each do |transaction| %>
                         <% if current_user.id == transaction.user_id %> 
                         <img class= "calendar-icon" src="/assets/help-received.png"> <br>
                             <p class="as-altruist">
-                                Help: <%= User.find(transaction.creator_id).name.capitalize %><br>
+                                Help: <%= find_creator(transaction) %><br>
                             </p>
-
                             <% end %>
                         <% if current_user.id == transaction.creator_id %>
                         <img class= "calendar-icon" src="/assets/help-sent.png"> <br>
                             <p class="from-altruist">
-                                From: <%= User.find(transaction.user_id).name.capitalize %>
+                                From: <%= find_receiver(transaction) %>
                             </p>
-
                         <% end %>
                     <% end %>
                   <% end %>
                  <% end %>
-
                 <h1 class="show-user-header header-row">STATS</h1>
-
                 <div class="as-altruist show-drop">
                     <h1 class="toggle header-row">As Altruist</h1>
-                    <% Transaction.where(user_id: current_user.id).all.each do |transaction| %>
+                    <% find_transactions_where_user_is_receiver(current_user.id).all.each do |transaction| %>
                         <p class="drop-show-p">Altruist I helped:
-                        <%= User.find(transaction.creator_id).name.capitalize %>,
+                        <%= find_creator(transaction) %>,
                         ID:<%= transaction.id %></p>
                     <% end %>
                 </div>
-
                 <div class="from-altruist show-drop">
                     <h1 class="toggle header-row">From Altruist</h1>
-                    <% Transaction.where(creator_id: current_user.id).all.each do |transaction| %>
+                    <% find_transactions_where_user_is_creator(current_user.id).all.each do |transaction| %>
                         <p class="drop-show-p">Altruist:
-                        <%= User.find(transaction.user_id).name.capitalize %>,
+                        <%= find_receiver(transaction) %>,
                         ID:<%= transaction.id %></p>
                     <% end %>
                 </div>
