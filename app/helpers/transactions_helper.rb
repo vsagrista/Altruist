@@ -1,4 +1,12 @@
 module TransactionsHelper
+  def create_meeting_and_transaction(creator,user,skill,minutes,date)
+    meeting = Meeting.new
+    transaction = Transaction.create(creator_id: creator, user_id: user, skill_id: skill, minutes: minutes, date: date)
+    meeting.transaction_id = transaction.id 
+    meeting.start_time = transaction.date 
+    meeting.save
+  end
+
   def update_to_completed(transaction)
     transaction.update(completed: true)
     redirect_to user_path(User.find(params[:user_id])), :notice => "Kudos for your altruism! #{User.find(transaction.creator_id).name.capitalize} sent you #{transaction.minutes} min, when he rates you, you'll get them :)"
@@ -20,4 +28,6 @@ module TransactionsHelper
     User.find(transaction.creator_id).update(minutes: (User.find(transaction.creator_id).minutes -= transaction.minutes))
     User.find(transaction.user_id).update(minutes: (User.find(transaction.user_id).minutes += transaction.minutes))
   end
+
+
 end
