@@ -1,5 +1,6 @@
 class Transaction < ActiveRecord::Base
 	belongs_to :user 
+	belongs_to :meeting
 	validates :creator_id, :user_id, :skill_id, presence: true
 	validate :is_own_skill?, :user_has_enough_minutes?
 

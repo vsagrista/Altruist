@@ -2,7 +2,6 @@
     <div class="row">
         <div class="col-md-6">
             <h2 class="name">Welcome, <%= @user.name.capitalize %></h2>
-
             <p>You have <strong><%= @user.minutes %> minutes</strong></p>
         </div>
 
@@ -83,17 +82,33 @@
         <div class="col-md-6">
             <div class="show-user-row">
                 <h1 class="show-user-header header-row toggle">CALENDAR</h1>
-                <%= month_calendar events: @meetings do |date, meetings| %>
-                    <%= date %>
-                    <p>Name: <% meetings.each do |meeting| %></p>
-                    <div>
-                        <%= meeting.name %>
-                    </div><% end %>
-                <% end %>
+
+
+                 <%= month_calendar events: @meetings do |date| %>
+                  <p class="date"><%= date %></p>
+                  <% if Transaction.where(date: date) %>
+                    <% Transaction.where(date: date).each do |transaction| %>
+                        <% if current_user.id == transaction.user_id %> 
+                            <p class="as-altruist">
+                                Help: <%= User.find(transaction.creator_id).name.capitalize %><br>
+                                date: <%= date %>
+                                ID: <%= transaction.id %>   
+                            </p>
+                            <% end %>
+                        <% if current_user.id == transaction.creator_id %>
+                            <p class="to-altruist">
+                                To be helped by:<br> <%= User.find(transaction.creator_id).name.capitalize %>
+                            </p>
+                        <% end %>
+                    <% end %>
+                  <% end %>
+                 <% end %>
+
+
 
                 <h1 class="show-user-header header-row">STATS</h1>
 
-                <div class="awaiting-to-rate show-drop">
+                <div class="as-altruist show-drop">
                     <h1 class="toggle header-row">As Altruist</h1>
                     <% Transaction.where(user_id: current_user.id).all.each do |transaction| %>
                         <p class="drop-show-p">Altruist I helped:
@@ -102,7 +117,7 @@
                     <% end %>
                 </div>
 
-                <div class="awaiting-to-rate show-drop">
+                <div class="from-altruist show-drop">
                     <h1 class="toggle header-row">From Altruist</h1>
                     <% Transaction.where(creator_id: current_user.id).all.each do |transaction| %>
                         <p class="drop-show-p">Altruist:

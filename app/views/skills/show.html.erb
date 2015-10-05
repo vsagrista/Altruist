@@ -14,14 +14,14 @@
 
 
 <h2>We already talked? </h2>
-
 <%= form_for [@user,@skill,@transaction] do |f| %>
-	<%= f.label "Minutes" %>
-	<%= f.number_field :minutes %>
+  <%= f.label "Minutes" %>
+  <%= f.number_field :minutes %>
   <%= f.label "When?" %>
   <%= f.datetime_select :date %>
-	<%= f.submit "Send!" %>
+  <%= f.submit "Send!" %>
 <% end %>
+
 
 <br>
 <h1>Your transactions with <%= @user.name %> </h1>

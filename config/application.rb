@@ -27,3 +27,4 @@ module Altruist
   config.active_record.default_timezone = 'Amsterdam'
   end
 end
+
