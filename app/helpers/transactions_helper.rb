@@ -13,7 +13,7 @@ module TransactionsHelper
   end
 
   def calculate_skill_rating(transaction)
-    if Skill.find(transaction.skill_id).rating == nil
+    if Skill.find(transaction.skill_id).rating == 0
       Skill.find(transaction.skill_id).update(rating: params[:transaction][:rating].to_i)
     else 
       updated_altruist_skill_rating = (Skill.find(transaction.skill_id).rating + params[:transaction][:rating].to_i) / 2

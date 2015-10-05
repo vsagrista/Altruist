@@ -64,8 +64,9 @@ event.preventDefault();
 });
 
 
-$(document).ready(function(){
 
+
+$(document).ready(function(){
   if($(".awaiting-to-accept").find("p").length != 0){
     var length = $(".awaiting-to-accept").find("p").length 
   $(".awaiting-to-accept > h1").addClass("has-content").append(" ("+ length+")")

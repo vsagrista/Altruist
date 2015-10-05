@@ -14,9 +14,11 @@
  *= require_self
  */
 
+
 body{
-    background: url(/assets/city-background.jpg);
-}
+        background: url(/assets/city-background.jpg);
+    }
+
 
 .navbar-custom > li{
     line-height: 45px;
@@ -306,6 +308,17 @@ body{
     margin-bottom: 3%;
 }
 
+.calendar-icon {
+    width: 40%;
+}
+
+.blank {
+    background: none;
+}
+
+.bike {
+    background: url(/assets/bike-background.jpg);
+}
 
 
 

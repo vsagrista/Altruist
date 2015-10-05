@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005083327) do
+ActiveRecord::Schema.define(version: 20151005173945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,13 +43,15 @@ ActiveRecord::Schema.define(version: 20151005083327) do
     t.integer  "creator_id"
     t.integer  "user_id"
     t.integer  "skill_id"
-    t.integer  "rating",     default: 0
-    t.integer  "minutes",    default: 60
-    t.boolean  "completed",  default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "rated",      default: false
+    t.integer  "rating",         default: 0
+    t.integer  "minutes",        default: 60
+    t.boolean  "completed",      default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "rated",          default: false
     t.datetime "date"
+    t.string   "subject"
+    t.text     "comment_review"
   end
 
   add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree

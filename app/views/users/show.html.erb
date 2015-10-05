@@ -89,16 +89,16 @@
                   <% if Transaction.where(date: date) %>
                     <% Transaction.where(date: date).each do |transaction| %>
                         <% if current_user.id == transaction.user_id %> 
-                        <img src="/assets/help-received.png"> <br>
+                        <img class= "calendar-icon" src="/assets/help-received.png"> <br>
                             <p class="as-altruist">
                                 Help: <%= User.find(transaction.creator_id).name.capitalize %><br>
                             </p>
 
                             <% end %>
                         <% if current_user.id == transaction.creator_id %>
-                        <img src="/assets/help-sent.png"> <br>
+                        <img class= "calendar-icon" src="/assets/help-sent.png"> <br>
                             <p class="from-altruist">
-                                To be helped by:<br> <%= User.find(transaction.user_id).name.capitalize %>
+                                From: <%= User.find(transaction.user_id).name.capitalize %>
                             </p>
 
                         <% end %>
