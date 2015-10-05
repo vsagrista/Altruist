@@ -16,12 +16,12 @@
 <h2>We already talked? </h2>
 <%= form_for [@user,@skill,@transaction] do |f| %>
   <p><%= f.label "Subject (The English lessons you were going to give me)"%><p> 
-  <%= f.text_field :subject %> <br>
+  <%= f.text_field :subject, id: "input-subject" %> <br>
   <p> <%= f.label "Minutes" %> </p>
   <%= f.number_field :minutes %> <br>
   <p> <%= f.label "When?" %> </p>
   <%= f.datetime_select :date %> <br>
-  <%= f.submit "Send!" %> 
+  <%= f.submit "Send!", id: "send-invite-button" %> 
 <% end %>
 
 

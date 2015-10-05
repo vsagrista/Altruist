@@ -63,9 +63,6 @@ event.preventDefault();
   });
 });
 
-
-
-
 $(document).ready(function(){
   if($(".awaiting-to-accept").find("p").length != 0){
     var length = $(".awaiting-to-accept").find("p").length 
@@ -97,6 +94,14 @@ $(document).ready(function(){
   $(".from-altruist > h1").addClass("has-content").append(" ("+ length+")")
   }
 });
+
+$(document).on("click", "#send-invite-button", function(){
+  if($("#input-subject").val() == "")
+  {
+    alert("You need to write a subject! \nE.g. 'Help painting the house'");
+    return false
+  }
+})
 
 
 
