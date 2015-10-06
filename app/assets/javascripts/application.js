@@ -28,6 +28,13 @@ $(document).on('click',("#how-it-works"), function(event) {
     $('html, body').animate({scrollTop: $("#first-step").offset().top}, 1000);
     return false
 });
+
+$(document).on('click',("#back-to-top"), function(event) {
+
+    $('html, body').animate({scrollTop: $("#how-it-works").offset().top}, 500);
+    return false
+});
+
 $(document).on('click',("#back-to-top"), function(event) {
 
     $('html, body').animate({scrollTop: $("#how-it-works").offset().top}, 500);
