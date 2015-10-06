@@ -1,6 +1,5 @@
 class TransactionsController < ApplicationController
   include TransactionsHelper
-  include UserHelper
   def create
     if current_user.minutes < params[:transaction][:minutes].to_i
       redirect_to :back, :notice => "You don't have enough minutes"

@@ -22,12 +22,9 @@ $(document).on("click", ".log-in", function(event){
 	event.preventDefault()
 	$(".js-modal").modal();
 });
-$(document).on("click", ".sign-up", function(event){
-	event.preventDefault()
-	$(".js-modal").modal();
-});
-$(document).on('click',("#how-it-works"), function(event) {
 
+
+$(document).on('click',("#how-it-works"), function(event) {
     $('html, body').animate({scrollTop: $("#first-step").offset().top}, 1000);
     return false
 });

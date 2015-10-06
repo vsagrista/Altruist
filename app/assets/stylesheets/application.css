@@ -16,8 +16,12 @@
 
 
 body{
-        background: url(/assets/city-background.jpg);
+    background: url(/assets/city-background.jpg);
     }
+
+.not-signed-in {
+    background: none;
+}
 
 
 .navbar-custom > li{
@@ -79,6 +83,30 @@ body{
     margin-top: -1% !important;
     height: 35%;
     font-size: 2em;
+}
+
+.join-page {
+    margin: 0 auto;
+    margin-top: 5%;
+    width: 100%;
+
+}
+
+.join-page h1{
+    text-align: center;
+}
+
+.join-field {
+    text-align: center;
+}
+
+.join-field label, input {
+    text-align: left;
+    width: 50%;
+}
+
+.sign-up-submitt-button{
+    text-align: center;
 }
 
 .carousel-h1 {

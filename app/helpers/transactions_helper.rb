@@ -29,6 +29,4 @@ module TransactionsHelper
     User.find(transaction.creator_id).update(minutes: (User.find(transaction.creator_id).minutes -= transaction.minutes))
     User.find(transaction.user_id).update(minutes: (User.find(transaction.user_id).minutes += transaction.minutes))
   end
-
-
 end
