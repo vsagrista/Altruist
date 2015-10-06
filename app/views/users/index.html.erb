@@ -1,8 +1,12 @@
 <h1>Hello, <%= current_user.name.capitalize %> </h1>
+
+<div class="wrapper">
 <p>You have <strong> <%= current_user.minutes %> minutes</strong></p>
 <%= form_tag users_path, :method => 'get' do %>
 	<p>What skill are you searching for?
-		<%= text_field_tag :name, params[:name] %>
+		<%= text_field_tag :name, params[:name] %> 
+	</p>
+	<p>Where?
 		<%= text_field_tag :address, params[:address] %>
 		<%= submit_tag 'Search' %>
 	</p>
@@ -22,4 +26,4 @@
 		<% end %>
 	<% end %>
 <% end %>
-<%= link_to "Back to dashboard", user_path(current_user) %>
+</div>

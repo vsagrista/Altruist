@@ -2,18 +2,16 @@ class UsersController < ApplicationController
   include UsersHelper
   before_action :authenticate_user!
   
-
   def profile
     @user = current_user
     redirect_to user_path(@user)
   end
 
   def index
-    @skills = []
     if !params[:name].nil? && !params[:address].nil?
       if !params[:name].empty? &&  !params[:address].empty?
-        location_search = find_skills_that_match_typed_address(params[:address])
-        @skills = find_skills_on_that_address_that_match_user_search(location_search,params[:name])
+        location_search = User.new.find_skills_that_match_typed_address(params[:address])
+        @skills = User.find_skills_on_that_address_that_match_user_search(location_search,params[:name])
       end
     end
     render :index
