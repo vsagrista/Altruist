@@ -1,29 +1,71 @@
-<h1>Hello, <%= current_user.name.capitalize %> </h1>
-
+<body class="body-search">
 <div class="wrapper">
-<p>You have <strong> <%= current_user.minutes %> minutes</strong></p>
-<%= form_tag users_path, :method => 'get' do %>
-	<p>What skill are you searching for?
-		<%= text_field_tag :name, params[:name] %> 
-	</p>
-	<p>Where?
-		<%= text_field_tag :address, params[:address] %>
-		<%= submit_tag 'Search' %>
-	</p>
-<% end %>
-<% if @skills.blank? %>
-	<p> Nothing found yet </p>
-<% else %>
-	<% @skills.sort! { |x, y| y["rating"] <=> x["rating"] }.each do |skill| %>
-		<% if current_user.id != skill.user_id %>
-		<ul>
-			<li>
-				Name: <%= skill.name %>, rating: <%= skill.rating %>,
-				Altruist: <%= User.find(skill.user_id).name %>,
-				<%= link_to "Contact this altruist", user_skill_path(skill.user_id,skill.id)%>
-			</li>
-		</ul>
-		<% end %>
-	<% end %>
-<% end %>
+	<div class="row">
+		<div class="col-md-4 searh-div search-div-right">
+			<div class="skills-wrapper">
+				<h2>Cities</h2>
+				<% get_all_skills.take(6).each do |skill| %>
+					<p>City: <%=skill.address.split(",").last %> </p>
+				<% end %>
+				<p>...</p>
+			</div>
+			<div class="cities-wrapper">
+				<h2>Current Talents</h2>
+				<% get_all_skills.take(6).each do |skill| %>
+					<p>Talent, <%=skill.name %> by <%= find_receiver_from_skill(skill) %></p>
+				<% end %>
+				<p>...</p>
+			</div>
+		</div>
+		<div class="col-md-4 center-search-div">
+			<div class="search-div-header">	
+				<h2 class="search-header">Hello, <%= current_user.name.capitalize %>, have a look at our cities and skills so far... </h2> 			
+			</div>
+			<hr>
+			<div class="search-div-search">
+				<h2>You have <strong> <%= current_user.minutes %> minutes</strong></h2>
+				<%= form_tag users_path, :method => 'get' do %>
+				<p>What talent?	</p>
+				<%= text_field_tag :name, params[:name], class: "input-search-page" %>
+				<p>Where?</p>
+					<%= text_field_tag :address, params[:address], class: "input-search-page" %>
+					<br>
+					<%= submit_tag 'Search', class: "input-search-page input-search-page-button" %>
+				<% end %>			
+			</div>
+		</div>
+		<div class="col-md-4 searh-div right-search-area">
+			<table class="table table-striped search-table">
+				<tr>
+					<td>ALTRUIST</td>
+					<td>TALENT</td>
+					<td>RATING</td>
+					<td>CONTACT</td>
+				</tr>
+					<% if @skills.nil? %>
+						<tr>
+							<td class="nothing-found"> Nothing found yet </td>
+						</tr>
+					<% else %>
+						<% @skills.sort! { |x, y| y["rating"] <=> x["rating"] }.each do |skill| %>
+							<% if current_user.id != skill.user_id %>
+								<tr>
+									<td><%= find_receiver_from_skill(skill) %></td>
+									<td><%= skill.name %></td>
+									<td class="rating"><%= skill.rating %></td>
+									<td><%= link_to "Contact this altruist", user_skill_path(skill.user_id,skill.id)%></td> 
+								</tr>
+							<% end %>
+					  	<% end %>
+					<% end %>
+			</table>			
+		</div>
+	</div>
 </div>
+</body>
+
+
+
+
+
+

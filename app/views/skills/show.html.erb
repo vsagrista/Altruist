@@ -12,6 +12,8 @@
   <p><strong>Email me:</strong> <span><%= @user.email %></span></p>
 <% end %>
 
+<img src="http://maps.google.com/maps/api/staticmap?center=<%=@skill.address%>&zoom=14&size=512x512&maptype=roadmap&sensor=false&markers=<%=@skill.address%>" alt="Static, Marked Map of Chicago, Illinois"></img>
+
 
 <h2>We already talked? </h2>
 <%= form_for [@user,@skill,@transaction] do |f| %>

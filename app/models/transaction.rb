@@ -11,7 +11,7 @@ class Transaction < ActiveRecord::Base
   end
   
   def user_has_enough_minutes?
-    if User.find(self.creator_id).minutes < self.minutes
+    if User.find(self.creator_id).minutes < self.minutes || User.find(self.creator_id).minutes - self.minutes < 0
       errors.add(:base, "You don't have enough minutes!")
     end
   end

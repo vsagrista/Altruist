@@ -268,6 +268,9 @@ body{
     font-weight: 200;
 }
 
+.toggle {
+    cursor: pointer;
+}
 
 .show-user-row{
     width: 100%;
@@ -347,6 +350,148 @@ body{
 .bike {
     background: url(/assets/bike-background.jpg);
 }
+.search-header {
+    text-align: center;
+    margin-top: 115px
+    
+}
+
+.cities-wrapper,.skills-wrapper > h2 {
+    text-align: center;
+
+}
+.cities-wrapper,.skills-wrapper {
+    text-align: center;
+} 
+
+.input-search-page {
+    height: 35px;
+    width: 35%;
+    margin-bottom: 2%;
+    margin-top: -1%;
+}
+
+.input-search-page-button {
+    text-align: center;
+}
+
+.body-search {
+    background: url(/assets/bike-background.jpg);
+}
+
+.search-div-right  {
+    font-size: 1.4em;
+    background-color: lightsalmon;
+    opacity: 0.9;
+    color: white;
+    padding-left: 0;
+    padding-right: 0;
+}
+.skills-wrapper{
+    background-color: darkturquoise;
+    padding-top: 1px;
+}
+
+.search-div-header {
+    display: table-cell;
+    height: 338px;
+}
+
+.center-search-div {
+    padding-left: -15px;
+    background:aquamarine;
+    height: 648px;
+    opacity: 0.9;
+}
+.search-div-search {
+    height: 330px;
+    text-align: center;
+}
+
+.search-div-search  p {
+    font-size: 1.4em;
+}
+
+.right-search-area {
+    height: 648px;
+    
+    opacity: 0.8;
+}
+
+.center-search-div hr {
+    margin-top: -18px;
+    margin-bottom: 32px;
+    border: 0;
+    border-top: 1px solid #4A3D3D;
+}
+
+.search-table {
+    margin-left: -16px;
+    width: 476px;
+    font-size: 1.2em;
+    color:black;
+}
+
+.rating { 
+    background: grey;
+}
+
+.nothing-found {
+    color: red;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+.search-div-center {
+    background-color: aliceblue;
+    text-align: center;
+    padding: 0;
+    font-size: 1.5em;
+    opacity: 0.9;
+}
+
+.search-div-right {
+    background-color: darkturquoise;
+    display: block;
+}
+
+
+*/
+
+
+
+/*
+.search-div-header {
+    background-color: aquamarine;
+    height: 329px;
+    padding:0;
+    
+}*//*
+.search-div-results {
+
+   position: absolute;
+   left: 100%;
+   top: 0;
+
+}*/
+/*
+.search-div {
+    padding: 0;
+    margin:0;
+}*/
 
 
 
