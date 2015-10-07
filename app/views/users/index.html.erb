@@ -5,7 +5,7 @@
 			<div class="skills-wrapper">
 				<h2>Cities</h2>
 				<% get_all_skills_with_unique_cities.each do |skill| %>
-						<p>City: 
+						<p class="city-p">City: 
 						<%= link_to "#{skill.capitalize}", display_path(skill) %> 
 						</p>
 				<% end %>
@@ -71,11 +71,12 @@
 </body>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-var cities = <%= @cities.length %>
-	if (cities<7){
+$(document).ready(function(){
+	event.preventDefault()
+	var cities = <%= @cities.length %>
+	if (cities<7 && $(".city-p").length < 7 ){
 		for(var i=0; i<7-cities;i++){
-			$(".skills-wrapper").append("<p>...</p>")
+			$(".skills-wrapper").append("<p class='city-p'>...</p>")
 		}
 	}
 })
