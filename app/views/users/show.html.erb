@@ -76,17 +76,19 @@
                   <p class="date"><%= date %></p>
                   <% if find_transaction_from_date(date) %>
                     <% find_transaction_from_date(date).each do |transaction| %>
-                        <% if current_user.id == transaction.user_id %> 
-                        <img class= "calendar-icon" src="/assets/help-received.png"> <br>
-                            <p class="as-altruist">
-                                Help: <%= find_creator(transaction) %><br>
-                            </p>
+                        <% unless transaction.rated %> 
+                            <% if current_user.id == transaction.user_id %> 
+                            <img class= "calendar-icon" src="/assets/help-received.png"> <br>
+                                <p class="as-altruist">
+                                    Help: <%= find_creator(transaction) %><br>
+                                </p>
+                                <% end %>
+                            <% if current_user.id == transaction.creator_id %>
+                            <img class= "calendar-icon" src="/assets/help-sent.png"> <br>
+                                <p class="from-altruist">
+                                    From: <%= find_receiver(transaction) %>
+                                </p>
                             <% end %>
-                        <% if current_user.id == transaction.creator_id %>
-                        <img class= "calendar-icon" src="/assets/help-sent.png"> <br>
-                            <p class="from-altruist">
-                                From: <%= find_receiver(transaction) %>
-                            </p>
                         <% end %>
                     <% end %>
                   <% end %>
@@ -95,17 +97,21 @@
                 <div class="as-altruist show-drop">
                     <h1 class="toggle header-row">As Altruist</h1>
                     <% find_transactions_where_user_is_receiver(current_user.id).all.each do |transaction| %>
+                                           
                         <p class="drop-show-p">Altruist I helped:
                         <%= find_creator(transaction) %>,
                         ID:<%= transaction.id %></p>
+                        
                     <% end %>
                 </div>
                 <div class="from-altruist show-drop">
                     <h1 class="toggle header-row">From Altruist</h1>
                     <% find_transactions_where_user_is_creator(current_user.id).all.each do |transaction| %>
+                        <% unless transaction.rated %> 
                         <p class="drop-show-p">Altruist:
                         <%= find_receiver(transaction) %>,
                         ID:<%= transaction.id %></p>
+                        <% end %>
                     <% end %>
                 </div>
             </div>

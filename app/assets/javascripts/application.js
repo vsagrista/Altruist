@@ -59,6 +59,14 @@ $(document).on("input",".rating-input", function() {
     }
 });
 
+$(document).on("click","#address-input-button", function() {
+    if ($("#user_address").val().split(",").length != 2)
+    {   
+      alert("Incorrect format! \nShould be like: '1400 Spring Road, Seattle'");
+      return false
+    }
+});
+
 $(document).ready(function() {
   $(".drop-show-p").hide();
   $(".toggle").click(function(event) {
