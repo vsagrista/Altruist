@@ -39,6 +39,12 @@ class UsersController < ApplicationController
     redirect_to user_path(params[:id])
   end
 
+  def display 
+    skills = User.new.find_skills_that_match_typed_address(params[:city].split(" ").join)
+    @city = params[:city].split(" ").join
+    @skills = skills.map { |h| h['name'] }.uniq
+  end
+
   private
   def user_params
     params.require(:user).permit(:name,:about,:phone,:address)

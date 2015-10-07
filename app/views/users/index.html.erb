@@ -5,7 +5,21 @@
 			<div class="skills-wrapper">
 				<h2>Cities</h2>
 				<% get_all_skills.take(6).each do |skill| %>
-					<p>City: <%=skill.address.split(",").last %> </p>
+					<p>City: 
+
+
+
+
+
+					<%= link_to "#{skill.address.split(',').last}", display_path(skill.address.split(',').last) %> 
+					</p>
+				
+
+
+
+
+
+
 				<% end %>
 				<p>...</p>
 			</div>
