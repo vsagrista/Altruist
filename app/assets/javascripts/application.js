@@ -18,6 +18,7 @@
 //= require jquery.turbolinks
 
 
+
 $(document).on("click", ".log-in", function(event){
 	event.preventDefault()
 	$(".js-modal").modal();

@@ -6,27 +6,19 @@
 				<h2>Cities</h2>
 				<% get_all_skills.take(6).each do |skill| %>
 					<p>City: 
-
-
-
-
-
 					<%= link_to "#{skill.address.split(',').last}", display_path(skill.address.split(',').last) %> 
 					</p>
-				
-
-
-
-
-
-
 				<% end %>
 				<p>...</p>
 			</div>
 			<div class="cities-wrapper">
-				<h2>Current Talents</h2>
-				<% get_all_skills.take(6).each do |skill| %>
-					<p>Talent, <%=skill.name %> by <%= find_receiver_from_skill(skill) %></p>
+				<h2>Top Talents</h2>
+				<% get_skills_sorted_by_rating.take(6).each do |skill| %>
+					<% if skill.name.nil? %>
+					<p>...</p>
+					<% else %>
+					<p><%=skill.name.capitalize %> by <%= find_receiver_from_skill(skill).capitalize %>: <%= skill.rating %> </p>
+					<% end %>
 				<% end %>
 				<p>...</p>
 			</div>

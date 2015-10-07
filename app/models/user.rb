@@ -17,4 +17,15 @@ class User < ActiveRecord::Base
     skills = location_search.select {|location| location.name.downcase == skill.downcase}
   end
 
+  def get_how_many_users_have_that_skill(skills)
+    counted = Hash.new(0)
+    skills.each { |h| counted[h["name"]] += 1 }
+    selected =  Hash[counted.map {|k,v| [k,v.to_s] }].to_a
+    selected.each do |item|
+      if item[1].to_i.instance_of? Fixnum  
+        item[1] = item[1].to_i
+      end
+    end
+  end
+
 end

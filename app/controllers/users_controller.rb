@@ -43,6 +43,7 @@ class UsersController < ApplicationController
     skills = User.new.find_skills_that_match_typed_address(params[:city].split(" ").join)
     @city = params[:city].split(" ").join
     @skills = skills.map { |h| h['name'] }.uniq
+    @skills_popularity = User.new.get_how_many_users_have_that_skill(skills)
   end
 
   private

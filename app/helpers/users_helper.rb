@@ -25,7 +25,11 @@ module UsersHelper
   end
 
   def get_all_skills
-    return Skill.all
+     Skill.all
+  end
+
+  def get_skills_sorted_by_rating 
+    Skill.all.sort_by { |value| value[:rating] }.reverse
   end
 
 end

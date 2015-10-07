@@ -31,7 +31,7 @@ class SkillsController < ApplicationController
 
 
 	def create 
-		Skill.create(name: params[:skill][:name], description: params[:skill][:description], user_id: params[:user_id])
+		Skill.create(name: params[:skill][:name], description: params[:skill][:description], user_id: params[:user_id] , address: User.find(params[:user_id]).address)
 		redirect_to user_skills_path
 	end
 
