@@ -23,19 +23,21 @@
                     <% @transaction_received.each do |transaction| %>
                         <% if transaction.completed == false %>
                             <p class="drop-show-p">From user:
-                            <%= find_creator(transaction) %>,
-                            transaction ID:
-                            <%= transaction.id %></p><%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction), class: "drop-show-p" %><% end %>
+                            <%= find_creator(transaction) %> wrote: <br>
+                                <%= transaction.subject %> 
+                                <%= link_to "VIEW", user_skill_transaction_path(find_creator(transaction),find_skill_from_transaction(transaction),transaction) %>
+                           </p><%= link_to "Accept Transaction", edit_user_skill_transaction_path(transaction.user_id, transaction.skill_id,transaction), class: "drop-show-p" %><% end %>
                         <% end %>
                 </div>
                 <div class="pending-to-rate show-drop">
                     <h1 class="toggle header-row">To Rate</h1>
                     <% @transaction_created.each do |transaction| %>
                         <% if transaction.completed && transaction.rated == false %>
-                            <p class="drop-show-p">With user:
-                            <%= find_receiver(transaction) %>,
-                            ID:
-                            <%= transaction.user_id %></p><%= link_to "Rate this Transaction", edit_user_skill_transaction_path(transaction.creator_id, transaction.skill_id,transaction), class: "drop-show-p" %>
+                            <p class="drop-show-p">
+                            <%= find_receiver(transaction) %> helped you with <%= find_skill_from_transaction(transaction).name %> 
+                             <%= link_to "VIEW", user_skill_transaction_path(find_creator(transaction),find_skill_from_transaction(transaction),transaction) %>
+                            </p><br>
+                                <%= link_to "Rate this Transaction", edit_user_skill_transaction_path(transaction.creator_id, transaction.skill_id,transaction), class: "drop-show-p" %>
                         <% end %>
                     <% end %>
                 </div>
@@ -49,8 +51,11 @@
                             <% if !transaction.completed %>
                                 <p class="drop-show-p">Waiting for:
                                 <%= find_receiver(transaction) %>
-                                to accept, Transaction ID:
-                                <%= transaction.id %></p>
+                                to accept, You wrote: <br>
+                                <%= transaction.subject %> 
+                                <%= link_to "VIEW", user_skill_transaction_path(find_creator(transaction),find_skill_from_transaction(transaction),transaction) %>
+                            </p>
+
                             <% end %>
                         <% end %>
                     <% end %>
@@ -60,10 +65,10 @@
                     <% @transaction_completed.each do |transaction| %>
                         <% unless transaction.rated %>
                             <p class="drop-show-p">From altruist:
-                            <%= find_creator(transaction) %>,
-                            ID:<%= transaction.creator_id %>, transaction ID:
-                            Transaction:
-                            <%= transaction.id %></p>
+                            <%= find_creator(transaction) %>, who wrote: <br>
+                            <%= transaction.subject %> 
+                                <%= link_to "VIEW", user_skill_transaction_path(find_creator(transaction),find_skill_from_transaction(transaction),transaction) %>   
+                            </p>
                         <% end %>
                     <% end %>
                 </div>
@@ -96,21 +101,18 @@
                 <h1 class="show-user-header header-row">STATS</h1>
                 <div class="as-altruist show-drop">
                     <h1 class="toggle header-row">As Altruist</h1>
-                    <% find_transactions_where_user_is_receiver(current_user.id).all.each do |transaction| %>
-                                           
+                    <% find_transactions_where_user_is_receiver(current_user.id).all.each do |transaction| %>                                     
                         <p class="drop-show-p">Altruist I helped:
-                        <%= find_creator(transaction) %>,
-                        ID:<%= transaction.id %></p>
-                        
+                        <%= find_creator(transaction) %><%= link_to "VIEW", user_skill_transaction_path(find_creator(transaction),find_skill_from_transaction(transaction),transaction) %></p>  
                     <% end %>
                 </div>
                 <div class="from-altruist show-drop">
                     <h1 class="toggle header-row">From Altruist</h1>
                     <% find_transactions_where_user_is_creator(current_user.id).all.each do |transaction| %>
                         <% unless transaction.rated %> 
-                        <p class="drop-show-p">Altruist:
-                        <%= find_receiver(transaction) %>,
-                        ID:<%= transaction.id %></p>
+                        <p class="drop-show-p">I was helped by <%= find_receiver(transaction)%>
+
+                        <%= link_to "VIEW", user_skill_transaction_path(find_creator(transaction),find_skill_from_transaction(transaction),transaction) %></p>
                         <% end %>
                     <% end %>
                 </div>
