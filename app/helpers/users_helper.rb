@@ -31,8 +31,6 @@ module UsersHelper
     @cities = skills_by_city.map { |h| h['address']}.uniq.compact 
   end
 
-
-
   def get_skills_sorted_by_rating 
     Skill.all.sort_by { |value| value[:rating] }.reverse
   end

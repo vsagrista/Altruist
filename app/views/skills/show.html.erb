@@ -1,31 +1,36 @@
 <p>Remember, you have: <strong> <%= current_user.minutes %> minutes</strong> (You cannot send more than this)</p>
-<h1>Skill for <%= @user.name %> </h1>
-<% if @skill.blank? %>
-  <%= "You haven't added any skill yet" %>
-<% else %>
-	<p>Name: <%= @skill.name %></p>
-	<p>Description <%= @skill.description %></p>
-	<p>User Rating on this Skill: <%= @skill.rating %></p>
-<% end %>
-<h2>Can my skill help you?</h2>
-<%= mail_to @user.email do %>
-  <p><strong>Email me:</strong> <span><%= @user.email %></span></p>
-<% end %>
+<div class="wrapper">
+  <div class="row">
+    <div class="col-md-6 map-div">
+      <img  src="http://maps.google.com/maps/api/staticmap?center=<%=@skill.address%>&zoom=14&size=512x512&maptype=roadmap&sensor=false&markers=<%=@skill.address%>" alt="Static, Marked Map of Chicago, Illinois"></img>
+      <p class="safety-message">For safety reasons, <%= @user.name.capitalize %>'s address is approximate</p>
+    </div>
 
-<img src="http://maps.google.com/maps/api/staticmap?center=<%=@skill.address%>&zoom=14&size=512x512&maptype=roadmap&sensor=false&markers=<%=@skill.address%>" alt="Static, Marked Map of Chicago, Illinois"></img>
-
-
-<h2>We already talked? </h2>
-<%= form_for [@user,@skill,@transaction] do |f| %>
-  <p><%= f.label "Subject (The English lessons you were going to give me)"%><p> 
-  <%= f.text_field :subject, id: "input-subject" %> <br>
-  <p> <%= f.label "Minutes" %> </p>
-  <%= f.number_field :minutes %> <br>
-  <p> <%= f.label "When?" %> </p>
-  <%= f.datetime_select :date %> <br>
-  <%= f.submit "Send!", id: "send-invite-button" %> 
-<% end %>
-
-
-<%= link_to "Back to dashboard", user_path(current_user) %>
-
+    <div class="col-md-6 ">
+      <h1>Altruist <%= @user.name.to_s.capitalize %> </h1>
+      <% if @skill.blank? %>
+      <%= "You haven't added any skill yet" %>
+      <% else %>
+      <p>Can help you with: <%= @skill.name.upcase %> near <%= @skill.address.split(",").last.split(" ")[0].capitalize %></p>
+      <p>Description: <%= @skill.description %></p>
+      <p>How <%= @user.name.to_s.capitalize %> rates in <%= @skill.name %> : <%= @skill.rating %></p>
+      <% end %>
+      <h2>Can my skill help you?</h2>
+      <%= mail_to @user.email do %>
+      <p><strong>Email me:</strong> <span><%= @user.email %></span></p>
+      <% end %>
+   
+        <h2>We already talked? </h2>
+        <%= form_for [@user,@skill,@transaction] do |f| %>
+        <p><%= f.label "Subject, like: 'Help me paint the house'"%><p>
+          <%= f.text_field :subject, id: "input-subject" %> <br>
+          <p> <%= f.label "Minutes, how much time you agreed" %> </p>
+          <%= f.number_field :minutes %> <br>
+          <p> <%= f.label "When? The date and time you chose" %> </p>
+          <%= f.datetime_select :date %> <br>
+          <%= f.submit "Send!", id: "send-invite-button" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  

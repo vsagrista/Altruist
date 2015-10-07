@@ -441,6 +441,14 @@ body{
     
 }
 
+.map-div {
+    text-align: right;
+}
+
+.safety-message {
+    color: #75E862;
+}
+
 
 
 
