@@ -4,12 +4,12 @@
 		<div class="col-md-4 searh-div search-div-right">
 			<div class="skills-wrapper">
 				<h2>Cities</h2>
-				<% get_all_skills.take(6).each do |skill| %>
-					<p>City: 
-					<%= link_to "#{skill.address.split(',').last}", display_path(skill.address.split(',').last) %> 
-					</p>
+				<% get_all_skills_with_unique_cities.each do |skill| %>
+						<p>City: 
+						<%= link_to "#{skill.capitalize}", display_path(skill) %> 
+						</p>
 				<% end %>
-				<p>...</p>
+				
 			</div>
 			<div class="cities-wrapper">
 				<h2>Top Talents</h2>
@@ -69,6 +69,18 @@
 	</div>
 </div>
 </body>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+var cities = <%= @cities.length %>
+	if (cities<7){
+		for(var i=0; i<7-cities;i++){
+			$(".skills-wrapper").append("<p>...</p>")
+		}
+	}
+})
+
+</script>
 
 
 

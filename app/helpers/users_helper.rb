@@ -24,9 +24,14 @@ module UsersHelper
     return Transaction.where(creator_id: user_id)
   end
 
-  def get_all_skills
-     Skill.all
+  def get_all_skills_with_unique_cities
+    skills_by_city = Skill.all.each do |skill| 
+        skill.address = skill.address.split(",")[1] 
+    end
+    @cities = skills_by_city.map { |h| h['address']}.uniq.compact 
   end
+
+
 
   def get_skills_sorted_by_rating 
     Skill.all.sort_by { |value| value[:rating] }.reverse
