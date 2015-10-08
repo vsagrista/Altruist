@@ -12,7 +12,6 @@
 		<p>Thanks for being an altruist!!!</p>
 	<% end %>
 <% else %>
-	<h1>Not yet rated</h1>
 	<% if @transaction.completed %>
 		<% if current_user.id == @transaction.creator_id %>
 			<p> You still have to rate altruist <%= find_receiver(@transaction) %> </p>
