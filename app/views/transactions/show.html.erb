@@ -1,4 +1,13 @@
-<p>Created by <%= find_creator(@transaction) %></p>
-<p>Accepted by <%= find_receiver(@transaction) %></p>
+<p>Altruist Name <%= find_receiver(@transaction) %></p>
+<p>He helped you with <%= find_skill_from_transaction(@transaction).name.capitalize %></p>
+<p> You wrote him: 
+<%= @transaction.subject %>
+</p>
+<% if @transaction.rated %>
+<p>Rating: OK. You gave <%= find_receiver(@transaction) %> <%= @transaction.rating %></p>
+<% else %>
+<p>Remember, you still have to rate his help and the minutes will be exchanged!</p>
+<% end %>
+
 <%= link_to "Back to dashboard", user_path(current_user) %>
 

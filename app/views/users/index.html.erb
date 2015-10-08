@@ -60,6 +60,10 @@
 									<td class="rating"><%= skill.rating %></td>
 									<td><%= link_to "Contact this altruist", user_skill_path(skill.user_id,skill.id)%></td> 
 								</tr>
+							<% else %>
+								<tr>
+									<td class="nothing-found"> Nothing found yet </td>
+								</tr>
 							<% end %>
 					  	<% end %>
 					<% end %>

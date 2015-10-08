@@ -109,8 +109,8 @@
                 <div class="from-altruist show-drop">
                     <h1 class="toggle header-row">From Altruist</h1>
                     <% find_transactions_where_user_is_creator(current_user.id).all.each do |transaction| %>
-                        <% unless transaction.rated %> 
-                        <p class="drop-show-p">I was helped by <%= find_receiver(transaction)%>
+                        <% if transaction.rated %> 
+                        <p class="drop-show-p">I was helped by <%= find_receiver(transaction)%> with <%= find_skill_from_transaction(transaction).name %>
 
                         <%= link_to "VIEW", user_skill_transaction_path(find_creator(transaction),find_skill_from_transaction(transaction),transaction) %></p>
                         <% end %>
