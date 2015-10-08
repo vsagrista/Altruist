@@ -85,13 +85,15 @@
                             <% if current_user.id == transaction.user_id %> 
                             <img class= "calendar-icon" src="/assets/help-received.png"> <br>
                                 <p class="as-altruist">
-                                    Help: <%= find_creator(transaction) %><br>
+                                    Help: <%= find_creator(transaction) %> <br>
+                                    with: <%= find_skill_from_transaction(transaction).name.upcase%>
                                 </p>
                                 <% end %>
                             <% if current_user.id == transaction.creator_id %>
                             <img class= "calendar-icon" src="/assets/help-sent.png"> <br>
                                 <p class="from-altruist">
-                                    From: <%= find_receiver(transaction) %>
+                                    <%= find_receiver(transaction) %> will help me <br>
+                                    with: <%= find_skill_from_transaction(transaction).name.upcase%>
                                 </p>
                             <% end %>
                         <% end %>
@@ -101,9 +103,11 @@
                 <h1 class="show-user-header header-row">STATS</h1>
                 <div class="as-altruist show-drop">
                     <h1 class="toggle header-row">As Altruist</h1>
-                    <% find_transactions_where_user_is_receiver(current_user.id).all.each do |transaction| %>                                     
+                    <% find_transactions_where_user_is_receiver(current_user.id).all.each do |transaction| %>   
+                         <% if transaction.rated %>                                  
                         <p class="drop-show-p">Altruist I helped:
-                        <%= find_creator(transaction) %><%= link_to "VIEW", user_skill_transaction_path(find_creator(transaction),find_skill_from_transaction(transaction),transaction) %></p>  
+                        <%= find_creator(transaction) %><%= link_to "VIEW", user_skill_transaction_path(find_creator(transaction),find_skill_from_transaction(transaction),transaction) %></p> 
+                        <% end %> 
                     <% end %>
                 </div>
                 <div class="from-altruist show-drop">

@@ -1,11 +1,10 @@
 class TransactionsController < ApplicationController
-
+include UsersHelper
   def create
     if current_user.minutes < params[:transaction][:minutes].to_i
       redirect_to :back, :notice => "You don't have enough minutes"
     else
       date_picked = Date.new(params[:transaction]["date(1i)"].to_i,params[:transaction]["date(2i)"].to_i,params[:transaction]["date(3i)"].to_i)
-      binding.pry
       Transaction.new.create_meeting_and_transaction(current_user.id,params[:user_id],params[:skill_id],params[:transaction][:minutes],date_picked,params[:transaction][:subject])
       redirect_to user_path(current_user), :notice =>
         "Your invitation to #{User.find(params[:user_id]).name.capitalize} (#{params[:transaction][:minutes]} min, skill: #{Skill.find(params[:skill_id]).name} ) has been delivered :)"

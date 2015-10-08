@@ -1,6 +1,8 @@
 <% if @transaction.completed == false %>
-	<h1> You are about to validate some minutes, the altruist <%= User.find(@transaction.creator_id).name %> 
-	<br> is requesting <%= @transaction.minutes %> minutes from your time. 
+	<h1> You are about to accept helping altruist <%= User.find(@transaction.creator_id).name.upcase %> 
+	<br> with <%= Skill.find(@transaction.skill_id).name.upcase %> for <%= @transaction.minutes %> minutes. 
+
+	 <br> After your help is given, you'll be rated and you'll earn those <%= @transaction.minutes %> minutes.<br> (Hopefully a great review as well!!!)
 		<%= form_for [@user,@skill,@transaction] do |f| %>
 			<%= f.submit "Accept" %>
 		<% end %>

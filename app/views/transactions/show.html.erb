@@ -1,13 +1,32 @@
-<p>Altruist Name <%= find_receiver(@transaction) %></p>
-<p>He helped you with <%= find_skill_from_transaction(@transaction).name.capitalize %></p>
-<p> You wrote him: 
-<%= @transaction.subject %>
-</p>
 <% if @transaction.rated %>
-<p>Rating: OK. You gave <%= find_receiver(@transaction) %> <%= @transaction.rating %></p>
+	<h1> Stats </h1>
+	<% if current_user.id == @transaction.user_id %>
+		<p>You were a great altruist!! <p>
+		<p>Your rating: <%= @transaction.rating %></p>
+		<p>You earned: <%= @transaction.minutes %> minutes </p>
+		<p>Thanks for being an altruist!!!</p>
+	<% else %>
+		<p>You were helped by <%= find_receiver(@transaction) %> <p>
+		<p>You gave him a rating of: <%= @transaction.rating %></p>
+		<p>You sent him: <%= @transaction.minutes %> minutes </p>
+		<p>Thanks for being an altruist!!!</p>
+	<% end %>
 <% else %>
-<p>Remember, you still have to rate his help and the minutes will be exchanged!</p>
+	<h1>Not yet rated</h1>
+	<% if @transaction.completed %>
+		<% if current_user.id == @transaction.creator_id %>
+			<p> You still have to rate altruist <%= find_receiver(@transaction) %> </p>
+			<p> For: <%= find_skill_from_transaction(@transaction).name %> </p>
+			<p> When you rate him he will receive your <%= @transaction.minutes %> minutes (and hopefully your good rating!)</p>
+		<% else %>
+			<p> You still have to wait for <%= find_creator(@transaction) %> to rate you </p>
+			<p> Then you'll get your <%= @transaction.minutes %> minutes (and hopefully a good rating!) </p>
+		<% end %>
+	<% else %>
+		<% if current_user.id == @transaction.user_id %>
+			<p> You still have to accept helping <%= find_creator(@transaction) %> </p>
+		<% else %>
+			<p> You still have to wait for <%= find_receiver(@transaction)%> to accept helping you. </p>
+		<% end %>
+	<% end %>
 <% end %>
-
-<%= link_to "Back to dashboard", user_path(current_user) %>
-
