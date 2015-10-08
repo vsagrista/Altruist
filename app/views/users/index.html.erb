@@ -8,16 +8,15 @@
 						<p class="city-p">City: 
 						<%= link_to "#{skill.capitalize}", display_path(skill) %> 
 						</p>
-				<% end %>
-				
+				<% end %>		
 			</div>
 			<div class="cities-wrapper">
-				<h2>Top Talents</h2>
+				<h2>Trending Talents</h2>
 				<% get_skills_sorted_by_rating.take(6).each do |skill| %>
 					<% if skill.name.nil? %>
 					<p>...</p>
 					<% else %>
-					<p><%=skill.name.capitalize %> by <%= find_receiver_from_skill(skill).capitalize %>: <%= skill.rating %> </p>
+					<p><%=skill.name.capitalize %> by <%= find_receiver_from_skill(skill).capitalize %> from <%=skill.address.split(",").last %>: <%= skill.rating %> </p>
 					<% end %>
 				<% end %>
 				<p>...</p>
