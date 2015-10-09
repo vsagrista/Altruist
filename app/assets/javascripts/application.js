@@ -17,7 +17,29 @@
 //= require_tree .
 //= require jquery.turbolinks
 
+var dashboardSections = [".awaiting-to-accept",".awaiting-to-rate", ".pending-to-accept", ".pending-to-rate",
+".as-altruist", ".from-altruist"]
 
+function iterateOverEachDashboardSection (arrayWithSections) {
+  for (var i=0; i<arrayWithSections.length;i++){
+    checkIfDashboardSeactionContainsTransaction($(arrayWithSections[i]))
+  }
+}
+
+function checkIfDashboardSeactionContainsTransaction(div){
+  if(div && div.find("p").length != 0){
+    addGreenColorIfContainsTransactions(div);
+  }
+}
+
+function addGreenColorIfContainsTransactions (div){
+  var length = div.find("p").length;
+  (div.find("h1")).addClass("has-content").append(" ("+ length+")");
+}
+
+$(document).ready(function(){
+  iterateOverEachDashboardSection(dashboardSections);
+});
 
 $(document).on("click", ".log-in", function(event){
 	event.preventDefault()
@@ -26,34 +48,27 @@ $(document).on("click", ".log-in", function(event){
 
 $(document).on('click',("#how-it-works"), function(event) {
     $('html, body').animate({scrollTop: $("#first-step").offset().top}, 1000);
-    return false
+    return false;
 });
 
 $(document).on('click',("#back-to-top"), function(event) {
-
     $('html, body').animate({scrollTop: $("#how-it-works").offset().top}, 500);
-    return false
+    return false;
 });
 
-$(document).on('click',("#back-to-top"), function(event) {
-
-    $('html, body').animate({scrollTop: $("#how-it-works").offset().top}, 500);
-    return false
-});
-
-$(document).ready(function(){
+$(document).ready(function(event){
+  $(".skills-icon").removeClass("skills-logo");
   $("#skills-logo").on({
     mouseenter: function () {
-        $(".skills-icon").addClass("skills-logo")
+        $(".skills-icon").addClass("skills-logo");
     },
     mouseleave: function (event) {
-        $(".skills-icon").removeClass("skills-logo")
+        $(".skills-icon").removeClass("skills-logo");
     }
   })
 })
 
-
-
+// disable bootstrap default toggles
 $(function() {
   setTimeout(function(){
     $('.alert').slideUp(1000);
@@ -61,13 +76,15 @@ $(function() {
 });
 
 $(document).on("input",".rating-input", function() {
-    if (parseInt($('.rating-input').val()) <= 10 && parseInt($('.rating-input').val()) > 0){   
-      $('.rating-input').css("background", "green");
-      $("#accepted").attr('value', 'Accept')
+    if (parseInt($('.rating-input').val()) <= 10 && parseInt($('.rating-input').val()) > 0){ 
+      $('.rating-input').removeClass("invalid-rating");
+      $('.rating-input').addClass("valid-rating");
+      $("#accepted").attr('value', 'Accept');
     }
     else {
-      $('.rating-input').css("background", "red");
-      $(".rating-input").attr('value', 'Invalid')
+      $('.rating-input').removeClass("valid-rating");
+      $('.rating-input').addClass("invalid-rating");
+      $(".rating-input").attr('value', 'Invalid');
     }
 });
 
@@ -82,46 +99,13 @@ $(document).on("click","#address-input-button", function() {
 $(document).ready(function() {
   $(".drop-show-p").hide();
   $(".toggle").click(function(event) {
-event.preventDefault();
-    $(this).siblings(".drop-show-p").slideToggle('slow')
-      
+    event.preventDefault();
+    $(this).siblings(".drop-show-p").slideToggle('slow');   
   });
 });
 
-$(document).ready(function(){
-  if($(".awaiting-to-accept").find("p").length != 0){
-    var length = $(".awaiting-to-accept").find("p").length 
-  $(".awaiting-to-accept > h1").addClass("has-content").append(" ("+ length+")")
-  }
-
-  if ($(".awaiting-to-rate").find("p").length != 0){
-    var length = $(".awaiting-to-rate").find("p").length  
-  $(".awaiting-to-rate > h1").addClass("has-content").append(" ("+ length+")")
-  }
-
-  if ($(".pending-to-accept").find("p").length != 0){
-    var length = $(".pending-to-accept").find("p").length   
-  $(".pending-to-accept > h1").addClass("has-content").append(" ("+ length+")")
-  }
-
-  if ($(".pending-to-rate").find("p").length != 0){
-    var length = $(".pending-to-rate").find("p").length 
-  $(".pending-to-rate > h1").addClass("has-content").append(" ("+ length+")")
-  }
-
-  if($(".as-altruist").find("p").length != 0){
-    var length = $(".as-altruist").find("p").length 
-  $(".as-altruist > h1").addClass("has-content").append(" ("+ length+")")
-  }
-
-  if($(".from-altruist").find("p").length != 0){
-    var length = $(".from-altruist").find("p").length 
-  $(".from-altruist > h1").addClass("has-content").append(" ("+ length+")")
-  }
-});
-
 $(document).on("click", "#send-invite-button", function(){
-  if($("#input-subject").val() == "")
+  if($("#input-subject").val() == "");
   {
     alert("You need to write a subject! \nE.g. 'Help painting the house'");
     return false

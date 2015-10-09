@@ -300,6 +300,14 @@ body{
     margin: 0
 }
 
+.valid-rating {
+    background: green;
+}
+
+.invalid-rating {
+    background: red
+}
+
 
 .skills-icon{
     width: 75px;
@@ -450,9 +458,7 @@ body{
 
 
 .skills-logo {
-
 animation: loading 5s linear infinite;
-
 }
 @keyframes loading{
  100% {transform:rotate(360deg);}
