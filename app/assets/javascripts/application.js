@@ -105,10 +105,13 @@ $(document).ready(function() {
 });
 
 $(document).on("click", "#send-invite-button", function(){
-  if($("#input-subject").val() == "");
+  if($("#input-subject").val() == "")
   {
     alert("You need to write a subject! \nE.g. 'Help painting the house'");
     return false
+  }
+  else {
+    return true
   }
 })
 

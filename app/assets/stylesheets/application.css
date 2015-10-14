@@ -98,6 +98,9 @@ body{
 
 .join-field {
     text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 1%;
 }
 
 .join-field label, input {

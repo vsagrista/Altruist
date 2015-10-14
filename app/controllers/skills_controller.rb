@@ -1,5 +1,6 @@
 class SkillsController < ApplicationController
 	before_action :authenticate_user!
+	include SkillsHelper
 	def index 
 		@user = User.find(params[:user_id])
 		@skills = @user.skills
