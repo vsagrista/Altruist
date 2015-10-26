@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :transactions
   validates :name, :about, :email, :address, presence: true
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable # :trackable, :validatable
+         :recoverable, :rememberable, :validatable # :trackable, :validatable
 
   def find_skills_that_match_typed_address(location)
     locations = Skill.all.select do |skill|
